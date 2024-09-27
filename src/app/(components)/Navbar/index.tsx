@@ -1,5 +1,6 @@
 import React from 'react'
-import { Search } from 'lucide-react';
+import { Search, Settings } from 'lucide-react';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -16,6 +17,18 @@ const Navbar = () => {
                     placeholder="Search.."
                 />
             </div>
+        </div>
+
+        {/* Icons */}
+        <div className='flex items-center'>
+            {/* Setting icon */}
+            <Link
+            href="/settings"
+            className='h-min w-min rounded p-2 hover:bg-gray-100'>
+                <Settings className='h-6 w-6 cursor-pointer dark:text-white'/>
+            </Link>
+            {/* 'md:inline-block' - grey line to mark settings icon when screen is too wide, else is 'hidden' */}
+            <div className='ml-2 mr-5 hidden min-h-[2em] w-[0.1rem] bg-gray-200 md:inline-block'></div>
         </div>
     </div>
   )
