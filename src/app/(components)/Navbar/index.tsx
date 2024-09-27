@@ -21,7 +21,7 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className='flex items-center'>
-            {/* Setting icon */}
+            {/* Settings icon */}
             <Link
             href="/settings"
             className='h-min w-min rounded p-2 hover:bg-gray-100'>
