@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-between bg-white px-4 py-3 dark:bg-black'>
         {/* Searchbar */}
-        <div className='flex- items-center gap-8'>
+        <div className='flex items-center gap-8'>
           {/* Sidebar menu icon - create menu button if sidebar is collapsed */}
             {!sidebarCollapsed ? null : (
               <button onClick={() => dispatch(setSidebarCollapsed(!sidebarCollapsed))}>
@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className='flex items-center'>
           {/* Dark Mode button */}
           <button onClick={() => dispatch(setDarkMode(!darkMode))} 
-            className={darkMode ? `rounded p-2 dark:hover:bg-gray-700` : `rounded p-2 hover:bg-gray-100`}>
+            className={darkMode ? `rounded p-2 dark:hover:bg-gray-700` : `rounded p-2 hover:bg-gray-200`}>
             {darkMode ? (
               <Sun className="h-6 w-6 cursor-pointer dark:text-white"/>
             ) : (
@@ -51,7 +51,7 @@ const Navbar = () => {
                 : `h-min w-min rounded p-2 hover:bg-gray-100`
               }
             >
-                <Settings className='h-6 w-6 cursor-pointer dark:text-white'/>
+                <Settings className='h-6 w-6 cursor-pointer dark:text-white '/>
             </Link>
             {/* 'md:inline-block' - grey line to mark settings icon when screen is too wide, else is 'hidden' */}
             <div className='ml-2 mr-5 hidden min-h-[2em] w-[0.1rem] bg-gray-200 md:inline-block'></div>

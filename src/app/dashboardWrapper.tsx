@@ -35,6 +35,7 @@ const DashboardLayout = ({children} : {children: React.ReactNode}) => {
   )
 }
 
+// Make it compatible with redux toolki by wrapping the layout and export it 
 const DashboardWrapper = ({children} : {children: React.ReactNode}) => {
   return (
     <StoreProvider>
