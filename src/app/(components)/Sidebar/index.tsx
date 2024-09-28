@@ -2,14 +2,14 @@
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setSidebarCollapsed } from '@/state';
-import { Home, Icon, LockIcon, LucideIcon, X } from 'lucide-react';
+import { Monitor, LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
 const Sidebar = () => {
-  const [showProjects, setShowProjects] = useState(true);
+  const [showLocations, setShowLocations] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
 
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ const Sidebar = () => {
           <Image src="/bipcards.png" alt="Logo" width={40} height={40}/>
           <div>
             <h3 className='text-md font-bold tracking-wide dark:text-gray-200'>
-              DATA INSIGHT
+              RANKING DATA
             </h3>
             <div className='mt-1 flex items-start gap-2'>
               <LockIcon className='mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400'/>
@@ -52,8 +52,28 @@ const Sidebar = () => {
         </div>
         {/* NAVBAR LINKS */}
         <nav className='z-10 w-full'>
-          <SidebarLink icon={Home} label='Home' href="/"/>
+          <SidebarLink icon={Monitor} label='OVERVIEW' href="/"/>
+          <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improve_rank"/>
+          <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
+          <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geo_insight"/>
+          <SidebarLink icon={MessageSquareMore} label='REVIEWS' href="/reviews"/>
+          <SidebarLink icon={Search} label='SEARCH' href="/search"/>
+          <SidebarLink icon={Settings} label='SETTINGS' href="/settings"/>
         </nav>
+
+        {/* Foldable submenu - LOCATIONS */}
+        <button onClick={() => setShowLocations((prev) => !prev)} 
+          className='flex w-full items-center justify-between px-8 py-3 text-gray-500'>
+            <span className=''>LOCATIONS</span>
+            {/* Switch up/down arrow */}
+            {showLocations ? (<ChevronUp className='h-5 w-5'/>) : <ChevronDown className='h-5 w-5'/>}
+        </button>
+        {/* LOCATIONS list */}
+        {showLocations && (
+          <>
+            <SidebarLink icon={MapPinHouse} label='BIPCARDS' href="/bipcards"/>
+          </>
+        )}
       </div>
     </div>
   )
@@ -63,7 +83,6 @@ interface SidebarLinkProps {
   href: string;
   icon: LucideIcon;
   label: string;
-  // isCollapsed: boolean
 }
 
 const SidebarLink = ({
@@ -74,20 +93,17 @@ const SidebarLink = ({
 }: SidebarLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
-  const screenWidth = window.innerWidth;
 
-  const dispatch = useAppDispatch();
-  const sidebarCollapsed = useAppSelector((state) => state.global.sidebarCollapsed)
-
-  // Check sidebar link is active
   return (
     <Link href={href} className='w-full'>
       <div 
+        // Sidebar links positional layout
         className={`relative flex cursor-pointer items-center gap-3 transition-colors
           hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
             isActive ? "bg-gray-100 text-white dark:bg-slate-600" : ""
-          }`}
+          } justify-start px-8 py-3`}
       >
+        {/* Active link styling */}
         {isActive && (
           <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
         )}
