@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setSidebarCollapsed } from '@/state';
-import { Monitor, LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin } from 'lucide-react';
+import { Monitor, LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -52,7 +52,7 @@ const Sidebar = () => {
         </div>
         {/* NAVBAR LINKS */}
         <nav className='z-10 w-full'>
-          <SidebarLink icon={Monitor} label='OVERVIEW' href="/"/>
+          <SidebarLink icon={Wallpaper} label='OVERVIEW' href="/"/>
           <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improve_rank"/>
           <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
           <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geo_insight"/>
