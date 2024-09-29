@@ -5,6 +5,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
+// Import routes
+import businessRoute from "./routes/businessRoute";
+import rankDataRoute from "./routes/rankDataRoute";
+
 // Configurations
 dotenv.config();
 const app = express();
@@ -20,6 +24,10 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.send("This is overview route");
 })
+
+// Get all businesses from db
+app.use("/business", businessRoute)
+app.use("/rankData", rankDataRoute)
 
 // Server
 const port = process.env.PORT || 3000;
