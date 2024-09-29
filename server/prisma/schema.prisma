@@ -40,7 +40,8 @@ model rankData {
   mostMentionedCompliment String
   mostMentionedComplaint  String
   mostMentionedStaff      String
-  approvalRatio           String
+  reviewScore             Decimal
+  mostReviewedByGender    String
   socialEngagement        Int
   topSocialTool           String
   bottomSocialTool        String

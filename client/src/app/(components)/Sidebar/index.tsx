@@ -53,9 +53,9 @@ const Sidebar = () => {
         {/* NAVBAR LINKS */}
         <nav className='z-10 w-full'>
           <SidebarLink icon={Wallpaper} label='OVERVIEW' href="/"/>
-          <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improve_rank"/>
+          <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improveRank"/>
           <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
-          <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geo_insight"/>
+          <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geoInsight"/>
           <SidebarLink icon={MessageSquareMore} label='REVIEWS' href="/reviews"/>
           <SidebarLink icon={Search} label='SEARCH' href="/search"/>
           <SidebarLink icon={Settings} label='SETTINGS' href="/settings"/>
@@ -72,6 +72,7 @@ const Sidebar = () => {
         {showLocations && (
           <>
             <SidebarLink icon={MapPinHouse} label='BIPCARDS' href="/bipcards"/>
+            <MapPinHouse className='flex w-10 h-6 text-gray-500'/>
           </>
         )}
       </div>
