@@ -14,9 +14,10 @@ const client_1 = require("@prisma/client");
 // API request to db
 const prisma = new client_1.PrismaClient();
 const getBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // Get data relevant to the ownerId
     const { ownerId } = req.query;
     try {
-        // Call the business schema and grab all data
+        // Call API
         const business = yield prisma.business.findMany({
             where: {
                 ownerId: Number(ownerId)

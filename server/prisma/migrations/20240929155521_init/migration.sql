@@ -52,6 +52,21 @@ CREATE TABLE "Reviews" (
     CONSTRAINT "Reviews_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Task" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "status" TEXT,
+    "priority" TEXT,
+    "tags" TEXT,
+    "startDate" TIMESTAMP(3),
+    "dueDate" TIMESTAMP(3),
+    "businessId" INTEGER NOT NULL,
+
+    CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_cognitoId_key" ON "User"("cognitoId");
 
@@ -69,3 +84,6 @@ ALTER TABLE "RankData" ADD CONSTRAINT "RankData_businessId_fkey" FOREIGN KEY ("b
 
 -- AddForeignKey
 ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Task" ADD CONSTRAINT "Task_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

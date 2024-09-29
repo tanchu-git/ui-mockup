@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 // API request to db
 const prisma = new PrismaClient();
 
-export const getRankData = async (
+export const getReviews = async (
     req: Request,
     res: Response
 ): Promise<void> => {
@@ -12,7 +12,7 @@ export const getRankData = async (
     const {businessId} = req.query;
 
     try {
-        const rankData = await prisma.rankData.findMany({
+        const reviews = await prisma.reviews.findMany({
             where: {
                 businessId: Number(businessId)
             },
@@ -20,8 +20,8 @@ export const getRankData = async (
                 Business: true
             }
         });
-        res.json(rankData);
+        res.json(reviews);
     } catch (error: any) {
-        res.status(500).json({message: `Error retrieving ranking data: ${error.message}`});
+        res.status(500).json({message: `Error retrieving reviews: ${error.message}`});
     }
 }

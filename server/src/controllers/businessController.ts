@@ -8,10 +8,11 @@ export const getBusiness = async (
     req: Request,
     res: Response
 ): Promise<void> => {
+    // Get data relevant to the ownerId
     const {ownerId} =req.query;
     
     try {
-        // Call the business schema and grab all data
+        // Call API
         const business = await prisma.business.findMany({
             where: {
                 ownerId: Number(ownerId)

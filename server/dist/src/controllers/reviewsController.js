@@ -9,15 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRankData = void 0;
+exports.getReviews = void 0;
 const client_1 = require("@prisma/client");
 // API request to db
 const prisma = new client_1.PrismaClient();
-const getRankData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Get data relevant to active business ID
     const { businessId } = req.query;
     try {
-        const rankData = yield prisma.rankData.findMany({
+        const reviews = yield prisma.reviews.findMany({
             where: {
                 businessId: Number(businessId)
             },
@@ -25,10 +25,10 @@ const getRankData = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 Business: true
             }
         });
-        res.json(rankData);
+        res.json(reviews);
     }
     catch (error) {
-        res.status(500).json({ message: `Error retrieving ranking data: ${error.message}` });
+        res.status(500).json({ message: `Error retrieving reviews: ${error.message}` });
     }
 });
-exports.getRankData = getRankData;
+exports.getReviews = getReviews;
