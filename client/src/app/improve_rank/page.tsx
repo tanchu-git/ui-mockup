@@ -12,7 +12,7 @@ const ImproveRank = () => {
   return (
     <div>
       {/* MODAL NEW TASKS */}
-      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} /> */}
       {/* {activeTab === "Board" && (
         <Board />
       )} */}

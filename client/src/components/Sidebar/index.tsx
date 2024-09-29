@@ -2,16 +2,22 @@
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setSidebarCollapsed } from '@/state';
-import { Monitor, LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper } from 'lucide-react';
+import { useGetBusinessQuery } from '@/state/api';
+import { LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
+// Set active user ID - make it dynamic later
+var activeUser = 1;
+var activeBusiness: number;
+
 const Sidebar = () => {
   const [showLocations, setShowLocations] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
 
+  const {data: businesses} = useGetBusinessQuery({ownerId: Number(activeUser)});
   const dispatch = useAppDispatch();
   const sidebarCollapsed = useAppSelector((state) => state.global.sidebarCollapsed)
 
@@ -69,12 +75,15 @@ const Sidebar = () => {
             {showLocations ? (<ChevronUp className='h-5 w-5'/>) : <ChevronDown className='h-5 w-5'/>}
         </button>
         {/* LOCATIONS list */}
-        {showLocations && (
-          <>
-            <SidebarLink icon={MapPinHouse} label='BIPCARDS' href="/bipcards"/>
-            <MapPinHouse className='flex w-10 h-6 text-gray-500'/>
-          </>
-        )}
+        {/* Map each relevant business data for the active user*/}
+        {showLocations && businesses?.map((business) => (
+          // Set the active business on click
+          <button onClick={() => {activeBusiness = business.id; console.log(activeBusiness);}}
+            className='flex items-start px-8 py-3 dark:text-white'>            
+                <MapPinHouse className='flex w-7 h-5'/>
+                {business.name}
+          </button>
+        ))}
       </div>
     </div>
   )
