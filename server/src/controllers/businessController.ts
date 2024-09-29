@@ -9,10 +9,10 @@ export const getBusiness = async (
     res: Response
 ): Promise<void> => {
     // Get data relevant to the ownerId
-    const {ownerId} =req.query;
+    const {ownerId} = req.query;
     
     try {
-        // Call API
+        // Call PRISMA
         const business = await prisma.business.findMany({
             where: {
                 ownerId: Number(ownerId)

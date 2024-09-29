@@ -17,7 +17,7 @@ const getBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     // Get data relevant to the ownerId
     const { ownerId } = req.query;
     try {
-        // Call API
+        // Call PRISMA
         const business = yield prisma.business.findMany({
             where: {
                 ownerId: Number(ownerId)

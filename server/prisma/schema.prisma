@@ -23,7 +23,7 @@ model User {
 
 model Business {
   id         Int    @id @default(autoincrement())
-  ownerId    Int?
+  ownerId    Int
   name       String
   street     String
   postcode   Int

@@ -10,7 +10,7 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Business" (
     "id" SERIAL NOT NULL,
-    "ownerId" INTEGER,
+    "ownerId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
     "street" TEXT NOT NULL,
     "postcode" INTEGER NOT NULL,
@@ -77,7 +77,7 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "RankData_businessId_key" ON "RankData"("businessId");
 
 -- AddForeignKey
-ALTER TABLE "Business" ADD CONSTRAINT "Business_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("userId") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Business" ADD CONSTRAINT "Business_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("userId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "RankData" ADD CONSTRAINT "RankData_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

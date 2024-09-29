@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 // Get data through the corresponding controller
 router.get("/", taskController_1.getTasks);
 router.post("/", taskController_1.createTask);
+router.patch("/:taskId/status", taskController_1.updateTaskStatus);
 exports.default = router;
