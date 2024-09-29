@@ -1,0 +1,34 @@
+[
+  {
+    "businessId": 1,
+    "name": "Anna May",
+    "review": "Lovely place and food.",
+    "score": 4,
+    "gender": "Female",
+    "date": "2023-01-10T00:00:00Z"
+  },
+  {
+    "businessId": 2,
+    "name": "Colt T.",
+    "review": "Great staff and desserts.",
+    "score": 4,
+    "gender": "Male",
+    "date": "2023-01-10T00:00:00Z"
+  },
+  {
+    "businessId": 2,
+    "name": "John Doe",
+    "review": "Great ramen!",
+    "score": 4,
+    "gender": "Male",
+    "date": "2023-01-10T00:00:00Z"
+  },
+  {
+    "businessId": 1,
+    "name": "Jane W.",
+    "review": "Lovely ramen.",
+    "score": 5,
+    "gender": "Female",
+    "date": "2023-01-10T00:00:00Z"
+  }
+]

@@ -29,6 +29,7 @@ async function main() {
     "user.json",
     "business.json",
     "rankData.json",
+    "reviews.json"
   ];
 
   await deleteAllData(orderedFileNames);

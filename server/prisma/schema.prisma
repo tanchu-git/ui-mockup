@@ -31,10 +31,11 @@ model Business {
   coordinate String
   User       User?  @relation(fields: [ownerId], references: [userId])
 
-  data rankData[]
+  data    RankData[]
+  reviews Reviews[]
 }
 
-model rankData {
+model RankData {
   rank                    Int
   totalReviews            Int
   mostMentionedCompliment String
@@ -51,4 +52,15 @@ model rankData {
   lastMention             DateTime?
   Business                Business? @relation(fields: [businessId], references: [id])
   businessId              Int       @unique
+}
+
+model Reviews {
+  id         Int       @id @default(autoincrement())
+  businessId Int
+  name       String
+  review     String
+  score      Int
+  gender     String
+  date       DateTime
+  Business   Business? @relation(fields: [businessId], references: [id])
 }

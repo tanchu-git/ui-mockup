@@ -21,7 +21,7 @@ CREATE TABLE "Business" (
 );
 
 -- CreateTable
-CREATE TABLE "rankData" (
+CREATE TABLE "RankData" (
     "rank" INTEGER NOT NULL,
     "totalReviews" INTEGER NOT NULL,
     "mostMentionedCompliment" TEXT NOT NULL,
@@ -39,6 +39,19 @@ CREATE TABLE "rankData" (
     "businessId" INTEGER NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "Reviews" (
+    "id" SERIAL NOT NULL,
+    "businessId" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "review" TEXT NOT NULL,
+    "score" INTEGER NOT NULL,
+    "gender" TEXT NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Reviews_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_cognitoId_key" ON "User"("cognitoId");
 
@@ -46,10 +59,13 @@ CREATE UNIQUE INDEX "User_cognitoId_key" ON "User"("cognitoId");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "rankData_businessId_key" ON "rankData"("businessId");
+CREATE UNIQUE INDEX "RankData_businessId_key" ON "RankData"("businessId");
 
 -- AddForeignKey
 ALTER TABLE "Business" ADD CONSTRAINT "Business_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("userId") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "rankData" ADD CONSTRAINT "rankData_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "RankData" ADD CONSTRAINT "RankData_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
