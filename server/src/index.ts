@@ -9,6 +9,7 @@ import morgan from "morgan";
 import businessRoute from "./routes/businessRoute";
 import rankDataRoute from "./routes/rankDataRoute";
 import reviewsRoute from "./routes/reviewsRoute";
+import taskRoute from "./routes/taskRoute";
 
 // Configurations
 dotenv.config();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/business", businessRoute)
 app.use("/rankData", rankDataRoute)
 app.use("/reviews", reviewsRoute)
+app.use("/tasks", taskRoute)
 
 // Server
 const port = process.env.PORT || 3000;

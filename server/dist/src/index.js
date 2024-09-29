@@ -13,6 +13,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const businessRoute_1 = __importDefault(require("./routes/businessRoute"));
 const rankDataRoute_1 = __importDefault(require("./routes/rankDataRoute"));
 const reviewsRoute_1 = __importDefault(require("./routes/reviewsRoute"));
+const taskRoute_1 = __importDefault(require("./routes/taskRoute"));
 // Configurations
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 app.use("/business", businessRoute_1.default);
 app.use("/rankData", rankDataRoute_1.default);
 app.use("/reviews", reviewsRoute_1.default);
+app.use("/tasks", taskRoute_1.default);
 // Server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
