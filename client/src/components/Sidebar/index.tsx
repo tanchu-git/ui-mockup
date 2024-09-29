@@ -75,18 +75,33 @@ const Sidebar = () => {
             {showLocations ? (<ChevronUp className='h-5 w-5'/>) : <ChevronDown className='h-5 w-5'/>}
         </button>
         {/* LOCATIONS list */}
-        {/* Map each relevant business data for the active user*/}
+        {/* Map each relevant business data for the active user */}
         {showLocations && businesses?.map((business) => (
           // Set the active business on click
-          <button onClick={() => {activeBusiness = business.id; console.log(activeBusiness);}}
-            className='flex items-start px-8 py-3 dark:text-white'>            
-                <MapPinHouse className='flex w-7 h-5'/>
+          <button onClick={() => {
+              activeBusiness = business.id; 
+              console.log(activeBusiness); 
+              setShowLocations((prev) => !prev);            
+            }
+          }
+            className={`flex items-start px-9 py-3 dark:text-white transition-colors
+                hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                isActive(business.id) ? "bg-gray-100 dark:bg-slate-600" : ""
+              }`}
+          >            
+                <MapPinHouse className='flex w-9 h-6'/>
                 {business.name}
           </button>
         ))}
       </div>
     </div>
   )
+}
+
+const isActive = (active: number) => {
+  if (active === activeBusiness) {
+    return true;
+  } else { return false; }
 }
 
 interface SidebarLinkProps {
@@ -98,8 +113,7 @@ interface SidebarLinkProps {
 const SidebarLink = ({
   href,
   icon: Icon,
-  label,
-  // isCollapsed
+  label
 }: SidebarLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
