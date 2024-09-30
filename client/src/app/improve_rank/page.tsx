@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react'
-import ProjectHeader from "@/app/improve_rank/ProjectHeader";
+import ProjectHeader from "@/app/improve_rank/ImproveHeader";
 
 type Props = {}
 
@@ -12,7 +12,7 @@ const ImproveRank = () => {
   return (
     <div>
       {/* MODAL NEW TASKS */}
-      {/* <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} /> */}
+      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       {/* {activeTab === "Board" && (
         <Board />
       )} */}

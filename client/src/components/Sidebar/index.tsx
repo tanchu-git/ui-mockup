@@ -10,12 +10,11 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
 // Set active user ID - make it dynamic later
-var activeUser = 1;
-var activeBusiness: number;
+let activeUser = 1;
+let activeBusiness: number;
 
 const Sidebar = () => {
   const [showLocations, setShowLocations] = useState(true);
-  const [showPriority, setShowPriority] = useState(true);
 
   const {data: businesses} = useGetBusinessQuery({ownerId: Number(activeUser)});
   const dispatch = useAppDispatch();
@@ -59,7 +58,7 @@ const Sidebar = () => {
         {/* NAVBAR LINKS */}
         <nav className='z-10 w-full'>
           <SidebarLink icon={Wallpaper} label='OVERVIEW' href="/"/>
-          <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improveRank"/>
+          <SidebarLink icon={TrendingUp} label='IMPROVE RANK' href="/improve_rank"/>
           <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
           <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geoInsight"/>
           <SidebarLink icon={MessageSquareMore} label='REVIEWS' href="/reviews"/>
@@ -77,21 +76,11 @@ const Sidebar = () => {
         {/* LOCATIONS list */}
         {/* Map each relevant business data for the active user */}
         {showLocations && businesses?.map((business) => (
-          // Set the active business on click
-          <button onClick={() => {
-              activeBusiness = business.id; 
-              console.log(activeBusiness); 
-              setShowLocations((prev) => !prev);            
-            }
-          }
-            className={`flex items-start px-9 py-3 dark:text-white transition-colors
-                hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                isActive(business.id) ? "bg-gray-100 dark:bg-slate-600" : ""
-              }`}
-          >            
-                <MapPinHouse className='flex w-9 h-6'/>
-                {business.name}
-          </button>
+          <SidebarSubMenu 
+            active={business.id} 
+            icon={MapPinHouse}
+            label={business.name}
+          />
         ))}
       </div>
     </div>
@@ -138,6 +127,46 @@ const SidebarLink = ({
         </span>
       </div>
     </Link>
+  )
+}
+
+interface SidebarSubMenuProps {
+  active: number;
+  icon: LucideIcon;
+  label: string;
+}
+
+const SidebarSubMenu = ({
+  active,
+  icon: Icon,
+  label
+}: SidebarSubMenuProps) => {
+  const isActive = (active: number) => active === activeBusiness
+
+  return (
+    <button onClick={() => {
+            activeBusiness = active; 
+            console.log(activeBusiness);  
+          }
+        }
+        className='w-full'>
+      <div 
+        // Sidebar links positional layout
+        className={`relative flex cursor-pointer items-center gap-3 transition-colors
+          hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
+            isActive(active) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
+          } justify-start px-8 py-3`}
+      >
+        {/* Active link styling */}
+        {isActive(active) && (
+          <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
+        )}
+        <Icon className='h-6 w-6 text-gray-800 dark:text-gray-100' />
+        <span className={`font-medium text-gray-800 dark:text-gray-100`}>
+          {label}
+        </span>
+      </div>
+    </button>
   )
 }
 
