@@ -3,6 +3,9 @@
 import React, { useState } from 'react'
 import ImproveHeader from "@/app/improve_rank/ImproveHeader";
 import Tile from '../TileView';
+import List from '../ListView';
+import Timeline from '../TimelineView';
+import Table from '../TableView';
 import { getActiveBusiness } from '@/components/Sidebar';
 
 type Props = {
@@ -26,7 +29,7 @@ const ImproveRank = ({params}: Props) => {
       {activeTab === "Tile" && (
         <Tile id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      {/* {activeTab === "List" && (
+      {activeTab === "List" && (
         <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
       {activeTab === "Timeline" && (
@@ -34,7 +37,7 @@ const ImproveRank = ({params}: Props) => {
       )}
       {activeTab === "Table" && (
         <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )} */}
+      )}
     </div>
   )
 }
