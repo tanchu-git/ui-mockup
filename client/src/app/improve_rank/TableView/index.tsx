@@ -14,12 +14,12 @@ const columns: GridColDef[] = [
   {
     field: "title",
     headerName: "Title",
-    width: 100,
+    width: 120,
   },
   {
     field: "description",
     headerName: "Description",
-    width: 200,
+    width: 400,
   },
   {
     field: "status",
@@ -50,18 +50,6 @@ const columns: GridColDef[] = [
     field: "dueDate",
     headerName: "Due Date",
     width: 130,
-  },
-  {
-    field: "author",
-    headerName: "Author",
-    width: 150,
-    renderCell: (params) => params.value?.author || "Unknown",
-  },
-  {
-    field: "assignee",
-    headerName: "Assignee",
-    width: 150,
-    renderCell: (params) => params.value?.assignee || "Unassigned",
   },
 ];
 

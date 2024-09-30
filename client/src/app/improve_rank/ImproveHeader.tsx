@@ -26,12 +26,6 @@ const ImproveHeader = ({activeTab, setActiveTab}: Props) => {
             activeTab={activeTab}
           />
           <TabButton
-            name="List"
-            icon={<List className='h-5 w-5'/>}
-            setActiveTab={setActiveTab}
-            activeTab={activeTab}
-          />
-          <TabButton
             name="Timeline"
             icon={<Clock className='h-5 w-5'/>}
             setActiveTab={setActiveTab}
