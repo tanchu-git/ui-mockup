@@ -114,5 +114,6 @@ export const {
     useGetBusinessQuery,
     useCreateBusinessMutation,
     useGetTasksQuery,
-    useCreateTaskMutation
+    useCreateTaskMutation,
+    useUpdateTaskStatusMutation,
 } = api;

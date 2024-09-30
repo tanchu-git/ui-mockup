@@ -2,10 +2,15 @@
 
 import React, { useState } from 'react'
 import ProjectHeader from "@/app/improve_rank/ImproveHeader";
+import Tile from './TileView';
+import { getActiveBusiness } from '@/components/Sidebar';
 
-type Props = {}
+type Props = {
+  params: {id: string}
+}
 
-const ImproveRank = () => {
+const ImproveRank = (businessId: number) => {
+  // const {id} = params;
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
@@ -13,9 +18,9 @@ const ImproveRank = () => {
     <div>
       {/* MODAL NEW TASKS */}
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {/* {activeTab === "Board" && (
-        <Board />
-      )} */}
+      {activeTab === "Tile" && (
+        <Tile id={getActiveBusiness()} setIsModalNewTaskOpen={setIsModalNewTaskOpen}/>
+      )}
     </div>
   )
 }

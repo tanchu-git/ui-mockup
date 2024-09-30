@@ -13,6 +13,14 @@ import React, { useState } from 'react'
 let activeUser = 1;
 let activeBusiness: number;
 
+export function getActiveBusiness() {
+  return activeBusiness;
+}
+
+export function setActiveBusiness(active: number) {
+  activeBusiness = active;
+}
+
 const Sidebar = () => {
   const [showLocations, setShowLocations] = useState(true);
 
@@ -26,6 +34,7 @@ const Sidebar = () => {
     ${sidebarCollapsed ? "w-0 hidden" : "w-64"}
   `
 
+  const pathname = usePathname();
   return (
     <div className={sidebarClassNames}>
       {/* Logo section */}
@@ -74,13 +83,18 @@ const Sidebar = () => {
             {showLocations ? (<ChevronUp className='h-5 w-5'/>) : <ChevronDown className='h-5 w-5'/>}
         </button>
         {/* LOCATIONS list */}
-        {/* Map each relevant business data for the active user */}
+        {/* Map each relevant business data for the active user */}        
         {showLocations && businesses?.map((business) => (
-          <SidebarSubMenu 
-            active={business.id} 
-            icon={MapPinHouse}
-            label={business.name}
-          />
+          // <SidebarSubMenu 
+          //   active={business.id} 
+          //   icon={MapPinHouse}
+          //   label={business.name}
+          // />
+          <SidebarSubMenu1
+          active={business.id}
+          icon={MapPinHouse}
+          label={business.name}
+        />
         ))}
       </div>
     </div>
@@ -130,6 +144,37 @@ const SidebarLink = ({
   )
 }
 
+const SidebarSubMenu1 = ({
+  active,
+  icon: Icon,
+  label
+}: SidebarSubMenuProps) => {
+  const isActive = (active: number) => active === activeBusiness
+  const [showLocations, setShowLocations] = useState(true);
+
+  return (
+    <button onClick={() => {setActiveBusiness(active)}} className='w-full'>
+      <div 
+        // Sidebar links positional layout
+        className={`relative flex cursor-pointer items-center gap-3 transition-colors
+          hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
+            isActive(active) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
+          } justify-start px-8 py-3`}
+      >
+        {/* Active link styling */}
+        {isActive(active) && (
+          <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
+        )}
+
+        <Icon className='h-6 w-6 text-gray-800 dark:text-gray-100' />
+        <span className={`font-medium text-gray-800 dark:text-gray-100`}>
+          {label}
+        </span>
+      </div>
+    </button>
+  )
+}
+
 interface SidebarSubMenuProps {
   active: number;
   icon: LucideIcon;
@@ -142,23 +187,25 @@ const SidebarSubMenu = ({
   label
 }: SidebarSubMenuProps) => {
   const isActive = (active: number) => active === activeBusiness
+  const [showLocations, setShowLocations] = useState(true);
 
   return (
     <button onClick={() => {
+            setShowLocations((prev) => !prev)
             activeBusiness = active; 
-            console.log(activeBusiness);  
+            console.log(activeBusiness);
           }
         }
         className='w-full'>
       <div 
-        // Sidebar links positional layout
         className={`relative flex cursor-pointer items-center gap-3 transition-colors
           hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-            isActive(active) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
-          } justify-start px-8 py-3`}
+              (isActive(active) && showLocations) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
+            } 
+            justify-start px-8 py-3`}
       >
         {/* Active link styling */}
-        {isActive(active) && (
+        {(isActive(active) && showLocations) && (
           <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
         )}
         <Icon className='h-6 w-6 text-gray-800 dark:text-gray-100' />
