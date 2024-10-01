@@ -83,7 +83,7 @@ const Sidebar = () => {
 
         {/* Foldable submenu - LOCATIONS */}
         <button onClick={() => setShowLocations((prev) => !prev)} 
-          className='flex w-full items-center justify-between px-8 py-3 text-gray-500'>
+          className='flex w-full items-center justify-between px-8 py-3 font-bold text-gray-500'>
             <span className=''>LOCATIONS</span>
             {/* Switch up/down arrow */}
             {showLocations ? (<ChevronUp className='h-5 w-5'/>) : <ChevronDown className='h-5 w-5'/>}
@@ -131,7 +131,7 @@ const SidebarLink = ({
     <Link href={href} className='w-full'>
       <div 
         // Sidebar links positional layout
-        className={`relative flex cursor-pointer items-center gap-3 transition-colors
+        className={`relative flex cursor-pointer items-center gap-3 transition-colors 
           hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
             isActive ? "bg-gray-100 text-white dark:bg-slate-600" : ""
           } justify-start px-8 py-3`}
@@ -157,7 +157,6 @@ const SidebarSubMenu = ({
   label
 }: SidebarSubMenuProps) => {
   const isActive = (active: number) => active === activeBusiness
-  const [showLocations, setShowLocations] = useState(true);
   const router = useRouter();
 
   function sideRoute() {
@@ -167,19 +166,20 @@ const SidebarSubMenu = ({
   return (
     <button onClick={() => {setActiveBusiness(active), sideRoute()}} className='w-full'>
       <div 
-        // Sidebar links positional layout
-        className={`relative flex cursor-pointer items-center gap-3 transition-colors
-          hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-            isActive(active) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
-          } justify-start px-8 py-3`}
+        // Container styling
+        className={`relative flex cursor-pointer items-center gap-2 transition-colors rounded-md 
+          py-3 mx-8 my-2 hover:bg-blue-100 dark:bg-black ${
+            isActive(active) ? "bg-blue-200 text-black dark:bg-blue-200" : "dark:hover:bg-blue-400"
+          } justify-start px-3 py-3`}
       >
-        {/* Active link styling */}
-        {isActive(active) && (
-          <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
-        )}
-
-        <Icon className='h-6 w-6 text-gray-800 dark:text-gray-100' />
-        <span className={`font-medium text-gray-800 dark:text-gray-100`}>
+        <Icon className={`h-6 w-6 transition-colors ${
+            isActive(active) ? "dark:hover:bg-blue-200 text-gray-800" 
+            : "text-gray-800 dark:text-gray-100"
+          }`}/>
+        <span className={`font-medium transition-colors ${
+            isActive(active) ? "dark:hover:bg-blue-200 text-gray-800" 
+            : "text-gray-800 dark:text-gray-100"
+          }`}>
           {label}
         </span>
       </div>

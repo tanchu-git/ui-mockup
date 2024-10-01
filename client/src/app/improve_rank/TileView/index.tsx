@@ -151,10 +151,10 @@ const Task = ({ task }: TaskProps) => {
         ? format(new Date(task.dueDate), "P")
         : "";
     
-    // Create priority tags
+    // Create priority tags and their respective styling
     const PriorityTag = ({ priority }: { priority: TaskType["priority"] }) => (
         <div
-            className={`rounded-full px-2 py-1 text-xs font-semibold ${
+            className={`rounded-full px-2 py-1 text-s font-semibold ${
                 priority === "Urgent" ? "bg-red-200 text-red-700" : 
                 priority === "High" ? "bg-yellow-200 text-yellow-700" : 
                 priority === "Normal" ? "bg-green-200 text-green-700" : 
@@ -176,6 +176,7 @@ const Task = ({ task }: TaskProps) => {
             ${isDragging ? "opacity-50" : "opacity-100"}
             `}
         >
+            {/* Tile styling */}
             <div className="p-4 md:p-5">
                 <div className="flex items-start justify-between">
                     <div className="flex flex-1 flex-wrap items-center gap-2">
@@ -184,7 +185,7 @@ const Task = ({ task }: TaskProps) => {
                         {taskTagsSplit.map((tag) => (
                             <div
                             key={tag}
-                            className="rounded-full bg-blue-100 px-2 py-1 text-xs"
+                            className="rounded-full bg-blue-100 px-2 py-1 text-s"
                             >
                             {" "}
                             {tag}
