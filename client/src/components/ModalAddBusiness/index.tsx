@@ -14,7 +14,7 @@ const ModalAddBusiness = ({ isOpen, onClose }: Props) => {
   const [ownerId, setOwnerId] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [street, setStreet] = useState("");
-  const [postcode, setPostcode] = useState(1);
+  const [postcode, setPostcode] = useState("");
   const [city, setCity] = useState("");
   const [coordinate, setCoordinate] = useState("");
 
@@ -26,7 +26,7 @@ const ModalAddBusiness = ({ isOpen, onClose }: Props) => {
         ownerId: getActiveUser(),
         name: businessName,
         street: street,
-        postcode: postcode, 
+        postcode: parseInt(postcode.replace(" ", "")), 
         city: city,
         // Fix by importing from google maps
         coordinate: "string",
@@ -68,7 +68,7 @@ const ModalAddBusiness = ({ isOpen, onClose }: Props) => {
         />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-2">
           <input
-            type="number"
+            type="text"
             className={inputStyles}
             placeholder="Postcode"
             value={postcode}
