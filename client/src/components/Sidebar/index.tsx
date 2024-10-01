@@ -6,7 +6,7 @@ import { useGetBusinessQuery } from '@/state/api';
 import { LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper, PlusSquare } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import ModalAddBusiness from '../ModalAddBusiness';
 
@@ -113,12 +113,6 @@ const Sidebar = () => {
   )
 }
 
-const isActive = (active: number) => {
-  if (active === activeBusiness) {
-    return true;
-  } else { return false; }
-}
-
 interface SidebarLinkProps {
   href: string;
   icon: LucideIcon;
@@ -156,6 +150,7 @@ const SidebarLink = ({
   )
 }
 
+
 const SidebarSubMenu = ({
   active,
   icon: Icon,
@@ -163,9 +158,14 @@ const SidebarSubMenu = ({
 }: SidebarSubMenuProps) => {
   const isActive = (active: number) => active === activeBusiness
   const [showLocations, setShowLocations] = useState(true);
+  const router = useRouter();
+
+  function sideRoute() {
+    router.push("/")
+  }
 
   return (
-    <button onClick={() => {setActiveBusiness(active)}} className='w-full'>
+    <button onClick={() => {setActiveBusiness(active), sideRoute()}} className='w-full'>
       <div 
         // Sidebar links positional layout
         className={`relative flex cursor-pointer items-center gap-3 transition-colors
