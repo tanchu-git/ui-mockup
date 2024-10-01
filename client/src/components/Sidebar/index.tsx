@@ -3,15 +3,20 @@
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setSidebarCollapsed } from '@/state';
 import { useGetBusinessQuery } from '@/state/api';
-import { LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper } from 'lucide-react';
+import { LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquareMore, MapPinHouse, Search, Settings, ChevronUp, ChevronDown, MapPin, Wallpaper, PlusSquare } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
+import ModalAddBusiness from '../ModalAddBusiness';
 
 // Set active user ID - make it dynamic later
 let activeUser = 1;
 let activeBusiness: number;
+
+export function getActiveUser() {
+  return activeUser;
+}
 
 export function getActiveBusiness() {
   return activeBusiness;
@@ -27,6 +32,7 @@ const Sidebar = () => {
   const {data: businesses} = useGetBusinessQuery({ownerId: Number(activeUser)});
   const dispatch = useAppDispatch();
   const sidebarCollapsed = useAppSelector((state) => state.global.sidebarCollapsed)
+  const [isModalAddBusinessOpen, setIsModalAddBusinessOpen] = useState(false);
 
   // For sidebar layout - check if it's collapsed and act accordingly
   const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl 
@@ -85,17 +91,23 @@ const Sidebar = () => {
         {/* LOCATIONS list */}
         {/* Map each relevant business data for the active user */}        
         {showLocations && businesses?.map((business) => (
-          // <SidebarSubMenu 
-          //   active={business.id} 
-          //   icon={MapPinHouse}
-          //   label={business.name}
-          // />
-          <SidebarSubMenu1
+          <SidebarSubMenu
           active={business.id}
           icon={MapPinHouse}
           label={business.name}
         />
         ))}
+        {/* Modal Add location */}
+        <ModalAddBusiness
+          isOpen={isModalAddBusinessOpen}
+          onClose={() => setIsModalAddBusinessOpen(false)}
+        />
+        <button
+          className="flex items-center rounded-md bg-blue-primary px-5 py-3 mx-6 my-2 text-white hover:bg-blue-600"
+          onClick={() => setIsModalAddBusinessOpen(true)}
+        >
+          <PlusSquare className="mr-2 h-5 w-5" /> Add Location 
+        </button>
       </div>
     </div>
   )
@@ -144,7 +156,7 @@ const SidebarLink = ({
   )
 }
 
-const SidebarSubMenu1 = ({
+const SidebarSubMenu = ({
   active,
   icon: Icon,
   label
@@ -179,42 +191,6 @@ interface SidebarSubMenuProps {
   active: number;
   icon: LucideIcon;
   label: string;
-}
-
-const SidebarSubMenu = ({
-  active,
-  icon: Icon,
-  label
-}: SidebarSubMenuProps) => {
-  const isActive = (active: number) => active === activeBusiness
-  const [showLocations, setShowLocations] = useState(true);
-
-  return (
-    <button onClick={() => {
-            setShowLocations((prev) => !prev)
-            activeBusiness = active; 
-            console.log(activeBusiness);
-          }
-        }
-        className='w-full'>
-      <div 
-        className={`relative flex cursor-pointer items-center gap-3 transition-colors
-          hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-              (isActive(active) && showLocations) ? "bg-gray-100 text-white dark:bg-slate-600" : ""
-            } 
-            justify-start px-8 py-3`}
-      >
-        {/* Active link styling */}
-        {(isActive(active) && showLocations) && (
-          <div className='absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200'/>
-        )}
-        <Icon className='h-6 w-6 text-gray-800 dark:text-gray-100' />
-        <span className={`font-medium text-gray-800 dark:text-gray-100`}>
-          {label}
-        </span>
-      </div>
-    </button>
-  )
 }
 
 export default Sidebar

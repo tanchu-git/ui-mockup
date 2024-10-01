@@ -2,49 +2,52 @@ import Modal from "@/components/Modal";
 import { useCreateBusinessMutation } from "@/state/api";
 import React, { useState } from "react";
 import { formatISO } from "date-fns";
+import { getActiveUser } from "../Sidebar";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const ModalNewProject = ({ isOpen, onClose }: Props) => {
+const ModalAddBusiness = ({ isOpen, onClose }: Props) => {
   const [createBusiness, { isLoading }] = useCreateBusinessMutation();
   const [ownerId, setOwnerId] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [street, setStreet] = useState("");
-  const [postcode, setPostcode] = useState("");
+  const [postcode, setPostcode] = useState(1);
   const [city, setCity] = useState("");
   const [coordinate, setCoordinate] = useState("");
 
   const handleSubmit = async () => {
     // Check for empty fields
-    if (!ownerId || !businessName || !street || !postcode || !city)  return;
+    if (!businessName || !street || !postcode || !city)  return;
 
-    // start here!!!!!!
     await createBusiness({
-        id: 1,
-        ownerId: 1,
-        name: "string",
-        street: "string",
-        postcode: "string",
-        city: "string",
+        ownerId: getActiveUser(),
+        name: businessName,
+        street: street,
+        postcode: postcode, 
+        city: city,
+        // Fix by importing from google maps
         coordinate: "string",
     });
   };
 
   const isFormValid = () => {
-    return ownerId && businessName && street && postcode && city;
+    return businessName && street && postcode && city;
   };
 
+  // Main styling to use
   const inputStyles =
     "w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none";
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} name="Create New Project">
+    // Use parent Modal component as base
+    <Modal isOpen={isOpen} onClose={onClose} name="Add New Location">
       <form
         className="mt-4 space-y-6"
         onSubmit={(e) => {
+          // Prevent refreshing page when adding and handle the submitted data
           e.preventDefault();
           handleSubmit();
         }}
@@ -84,13 +87,14 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
           className={`focus-offset-2 mt-4 flex w-full justify-center rounded-md border border-transparent bg-blue-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 ${
             !isFormValid() || isLoading ? "cursor-not-allowed opacity-50" : ""
           }`}
+          // Disable add button if data is invalid or loading
           disabled={!isFormValid() || isLoading}
         >
-          {isLoading ? "Creating..." : "Create Project"}
+          {isLoading ? "Adding.." : "Add Location"}
         </button>
       </form>
     </Modal>
   );
 };
 
-export default ModalNewProject;
+export default ModalAddBusiness;

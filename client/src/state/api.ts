@@ -14,7 +14,7 @@ export interface Business {
     ownerId: number;
     name: string;
     street: string;
-    postcode: string;
+    postcode: number;
     city: string;
     coordinate?: string;
 
