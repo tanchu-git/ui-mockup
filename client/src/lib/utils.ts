@@ -30,3 +30,33 @@ export const dataGridSxStyles = (darkMode: boolean) => {
     },
   };
 };
+
+export const sxCustomStyling = (darkMode: boolean) => {
+  return {
+    "& .MuiDataGrid-columnHeaders": {
+      color: `${darkMode ? "#e5e7eb" : ""}`,
+      '& [role="row"] > *': {
+        backgroundColor: `${darkMode ? "#1d1f21" : "white"}`,
+        border: "none",
+      },
+    },
+    "& .MuiIconbutton-root": {
+      color: `${darkMode ? "#a3a3a3" : ""}`,
+    },
+    "& .MuiTablePagination-root": {
+      color: `${darkMode ? "#a3a3a3" : ""}`,
+    },
+    "& .MuiTablePagination-selectIcon": {
+      color: `${darkMode ? "#a3a3a3" : ""}`,
+    },
+    "& .MuiDataGrid-cell": {
+      border: "none",
+    },
+    "& .MuiDataGrid-row": {
+      border: "none",
+    },
+    "& .MuiDataGrid-withBorderColor": {
+      border: "none",
+    },
+  };
+};

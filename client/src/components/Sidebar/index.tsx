@@ -76,7 +76,7 @@ const Sidebar = () => {
           <SidebarLink key={activeBusiness} icon={TrendingUp} label='IMPROVE RANK' href={`/improve_rank/${activeBusiness}`}/>
           <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
           <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geoInsight"/>
-          <SidebarLink icon={MessageSquareMore} label='REVIEWS' href="/reviews"/>
+          <SidebarLink icon={MessageSquareMore} label='REVIEWS' href={`/reviews/${activeBusiness}`}/>
           <SidebarLink icon={Search} label='SEARCH' href="/search"/>
           <SidebarLink icon={Settings} label='SETTINGS' href="/settings"/>
         </nav>
@@ -172,10 +172,12 @@ const SidebarSubMenu = ({
             isActive(active) ? "bg-blue-200 text-black dark:bg-blue-200" : "dark:hover:bg-blue-400"
           } justify-start px-3 py-3`}
       >
+        {/* Icon styling */}
         <Icon className={`h-6 w-6 transition-colors ${
             isActive(active) ? "dark:hover:bg-blue-200 text-gray-800" 
             : "text-gray-800 dark:text-gray-100"
           }`}/>
+        {/* Label styling */}
         <span className={`font-medium transition-colors ${
             isActive(active) ? "dark:hover:bg-blue-200 text-gray-800" 
             : "text-gray-800 dark:text-gray-100"

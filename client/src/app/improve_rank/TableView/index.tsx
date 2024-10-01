@@ -66,7 +66,10 @@ const TableView = ({ id, setIsModalNewTaskOpen }: Props) => {
 
   return (
     <div className="h-[540px] w-full px-4 pb-8 xl:px-6">
-      <div className="pt-5">
+      <h1 className="me-2 text-lg font-bold dark:text-white py-5">
+        Tasks Table
+      </h1>
+      {/* <div className="pt-5">
         <Header
           name="Tasks Table"
           buttonComponent={
@@ -79,7 +82,7 @@ const TableView = ({ id, setIsModalNewTaskOpen }: Props) => {
           }
           isSmallText
         />
-      </div>
+      </div> */}
       <DataGrid
         rows={tasks || []}
         columns={columns}

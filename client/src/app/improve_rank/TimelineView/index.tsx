@@ -80,14 +80,14 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: Props) => {
             barBackgroundSelectedColor={isDarkMode ? "#000" : "#9ba1a6"}
           />
         </div>
-        <div className="px-4 pb-5 pt-1">
+        {/* <div className="px-4 pb-5 pt-1">
           <button
             className="flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600"
             onClick={() => setIsModalNewTaskOpen(true)}
           >
             Add New Task
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

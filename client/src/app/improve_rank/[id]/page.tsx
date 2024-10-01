@@ -15,14 +15,9 @@ const ImproveRank = ({params}: Props) => {
   const [activeTab, setActiveTab] = useState("Tile");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
+  // Modal is for adding a 'Add Task' functionality later
   return (
     <div>
-      {/* MODAL NEW TASKS */}
-      {/* <ModalNewTask
-        isOpen={isModalNewTaskOpen}
-        onClose={() => setIsModalNewTaskOpen(false)}
-        id={id}
-      /> */}
       <ImproveHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === "Tile" && (
         <Tile id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />

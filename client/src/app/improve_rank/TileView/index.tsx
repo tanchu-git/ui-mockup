@@ -75,7 +75,7 @@ const TaskColumn = ({
         const statusColor: any = {
           "To Do": "#2563EB",
           "Work In Progress": "#059669",
-          Completed: "#000000",
+          "Completed": "#a9a9a9",
         }
 
         return (
@@ -87,6 +87,7 @@ const TaskColumn = ({
               className={`sl:py-4 rounded-lg py-2 xl:px-2 ${isOver ? "bg-blue-100 dark:bg-neutral-950" : ""}`}
             >
               <div className="mb-3 flex w-full">
+                {/* Status header styling */}
                 <div
                   className={`w-2 !bg-[${statusColor[status]}] rounded-s-lg`}
                   style={{ backgroundColor: statusColor[status] }}
@@ -106,17 +107,17 @@ const TaskColumn = ({
                         <button className="flex h-6 w-5 items-center justify-center dark:text-neutral-500">
                             <EllipsisVertical size={26} />
                         </button>
-                        <button
+                        {/* <button
                             className="flex h-6 w-6 items-center justify-center rounded bg-gray-200 dark:bg-dark-tertiary dark:text-white"
                             onClick={() => setIsModalNewTaskOpen(true)}
                         >
                             <Plus size={16} />
-                        </button>
+                        </button> */}
                     </div>                                 
                 </div>
               </div>
               
-              {/* Place the tasks in the right columns */}
+              {/* Call our api to get the tasks */}
               {tasks
                 .filter((task) => task.status === status)
                 .map((task) => (
@@ -172,7 +173,8 @@ const Task = ({ task }: TaskProps) => {
         ref={(instance) => {
             drag(instance);
         }}
-        className={`mb-4 rounded-md bg-white shadow dark:bg-dark-secondary 
+        // Tile shadow
+        className={`mb-4 rounded-md bg-white shadow-lg dark:bg-dark-secondary 
             ${isDragging ? "opacity-50" : "opacity-100"}
             `}
         >
@@ -207,7 +209,7 @@ const Task = ({ task }: TaskProps) => {
                 <p className="text-base text-gray-600 dark:text-neutral-500">
                     {task.description}
                 </p>
-                <div className="mt-4 border-t border-gray-200 dark:border-stroke-dark" />
+                <div className="mt-4 border-t border-gray-300 dark:border-stroke-dark" />
             </div>
         </div>
     );

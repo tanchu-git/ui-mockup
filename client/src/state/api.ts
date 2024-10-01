@@ -48,12 +48,22 @@ export interface Task {
     business?: Business
 }
 
+export interface Review {
+    id: number;
+    businessId: number;
+    name: string;
+    review: string;
+    score: number;
+    gender: string;
+    date: string;
+}
+
 // Create API to call the backend front the frontend
 export const api = createApi({
     // Grab the URL in .env 
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL}),
     reducerPath: "api",
-    tagTypes: ["Business", "Tasks"],
+    tagTypes: ["Business", "Tasks", "Reviews"],
     // Redux query
     endpoints: (build) => ({
         // return the schema
@@ -107,6 +117,14 @@ export const api = createApi({
                 {type: "Tasks", id: taskId}
             ]
         }),
+        getReviews: build.query<Review[], {businessId: number}>({
+            // append to URL
+            query: ({businessId}) => `reviews?businessId=${businessId}`,
+            providesTags: (result) => 
+                result 
+                    ? result.map(({id}) => ({type: "Reviews" as const, id})) 
+                    : [{type: "Reviews" as const}]
+        }),
     })
 })
 
@@ -116,4 +134,5 @@ export const {
     useGetTasksQuery,
     useCreateTaskMutation,
     useUpdateTaskStatusMutation,
+    useGetReviewsQuery
 } = api;
