@@ -64,7 +64,7 @@ const Overview = () => {
 
   const statusCount = tasks.reduce(
     (acc: Record<string, number>, task: Task) => {
-      const status = task.dueDate ? "Completed" : "Active";
+      const status = task.status === "Completed" ? "Completed" : "Active";
       acc[status] = (acc[status] || 0) + 1;
       return acc;
     },
