@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
-import { Clock, Filter, Grid3x3, Grid3X3, List, Share2, Table } from 'lucide-react';
-import React, { act, useState } from 'react'
+import { Clock, Filter, Grid3x3, Grid3X3, Share2, Table } from 'lucide-react';
+import React, { useState } from 'react'
 
 type Props = {
   activeTab: string;

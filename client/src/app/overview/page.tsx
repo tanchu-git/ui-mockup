@@ -4,12 +4,10 @@
 import {
   Priority,
   Task,
-  useGetBusinessQuery,
   useGetTasksQuery,
 } from "@/state/api";
 import React from "react";
 import { useAppSelector } from "../redux";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Header from "@/components/Header";
 import {
   Bar,
@@ -24,16 +22,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import { getActiveBusiness, getActiveUser } from "@/components/Sidebar";
-import { BarChart2, BarChart4, BarChartBig, BarChartHorizontal } from "lucide-react";
-
-const taskColumns: GridColDef[] = [
-  { field: "title", headerName: "Title", width: 200 },
-  { field: "status", headerName: "Status", width: 150 },
-  { field: "priority", headerName: "Priority", width: 150 },
-  { field: "dueDate", headerName: "Due Date", width: 150 },
-];
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 

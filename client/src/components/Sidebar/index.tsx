@@ -150,7 +150,6 @@ const SidebarLink = ({
   )
 }
 
-
 const SidebarSubMenu = ({
   active,
   icon: Icon,
