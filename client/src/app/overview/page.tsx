@@ -26,6 +26,7 @@ import {
 } from "recharts";
 import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import { getActiveBusiness, getActiveUser } from "@/components/Sidebar";
+import { BarChart2, BarChart4, BarChartBig, BarChartHorizontal } from "lucide-react";
 
 const taskColumns: GridColDef[] = [
   { field: "title", headerName: "Title", width: 200 },
@@ -48,6 +49,7 @@ const Overview = () => {
   if (tasksLoading) return <div>Loading..</div>;
   if (tasksError || !tasks ) return <div>Error fetching data</div>;
 
+  // Count the different priority tags
   const priorityCount = tasks.reduce(
     (acc: Record<string, number>, task: Task) => {
       const { priority } = task;
@@ -138,20 +140,8 @@ const Overview = () => {
         </div>
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary md:col-span-2">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Your Tasks
+            Etc
           </h3>
-          <div style={{ height: 400, width: "100%" }}>
-            {/* <DataGrid
-              rows={tasks}
-              columns={taskColumns}
-              checkboxSelection
-              loading={tasksLoading}
-              getRowClassName={() => "data-grid-row"}
-              getCellClassName={() => "data-grid-cell"}
-              className={dataGridClassNames}
-              sx={dataGridSxStyles(darkMode)}
-            /> */}
-          </div>
         </div>
       </div>
     </div>
