@@ -58,12 +58,32 @@ export interface Review {
     date: string;
 }
 
+export interface RankData {   
+    businessId: number;
+    rank: number;             
+    totalReviews: number;           
+    mostMentionedCompliment: string;
+    mostMentionedComplaint: string;
+    mostMentionedStaff: string;
+    reviewScore: string;
+    mostReviewedByGender: string;
+    socialEngagement: number;
+    topSocialTool: string;
+    bottomSocialTool: string;  
+    topReviewTool: string;
+    bottomReviewTool: string;
+    lastReview: string;
+    lastMention: string;
+
+    business?: Business
+}
+
 // Create API to call the backend front the frontend
 export const api = createApi({
     // Grab the URL in .env 
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL}),
     reducerPath: "api",
-    tagTypes: ["Business", "Tasks", "Reviews"],
+    tagTypes: ["Business", "Tasks", "Reviews", "RankData"],
     // Redux query
     endpoints: (build) => ({
         // return the schema
@@ -125,6 +145,14 @@ export const api = createApi({
                     ? result.map(({id}) => ({type: "Reviews" as const, id})) 
                     : [{type: "Reviews" as const}]
         }),
+        getRankData: build.query<RankData[], {businessId: number}>({
+            // append to URL
+            query: ({businessId}) => `rankData?businessId=${businessId}`,
+            providesTags: (result) => 
+                result 
+                    ? result.map(({id}) => ({type: "RankData" as const, id})) 
+                    : [{type: "RankData" as const}]
+        }),
     })
 })
 
@@ -134,5 +162,6 @@ export const {
     useGetTasksQuery,
     useCreateTaskMutation,
     useUpdateTaskStatusMutation,
-    useGetReviewsQuery
+    useGetReviewsQuery,
+    useGetRankDataQuery
 } = api;

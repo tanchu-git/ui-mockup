@@ -52,6 +52,7 @@ const oneStarColumns: GridColDef[] = [
 
 const TableTilesView = ({ id }: Props) => {
   const darkMode = useAppSelector((state) => state.global.darkMode);
+  
   const {
     data: reviews,
     error,

@@ -72,7 +72,7 @@ const Sidebar = () => {
         </div>
         {/* NAVBAR LINKS */}
         <nav className='z-10 w-full'>
-          <SidebarLink icon={Wallpaper} label='OVERVIEW' href="/"/>
+          <SidebarLink icon={Wallpaper} label='OVERVIEW' href={`/overview/${activeBusiness}`}/>
           <SidebarLink key={activeBusiness} icon={TrendingUp} label='IMPROVE RANK' href={`/improve_rank/${activeBusiness}`}/>
           <SidebarLink icon={ChartNoAxesCombined} label='CHARTS' href="/charts"/>
           <SidebarLink icon={MapPin} label='GEO INSIGHT' href="/geoInsight"/>
