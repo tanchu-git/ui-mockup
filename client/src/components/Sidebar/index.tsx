@@ -156,10 +156,13 @@ const SidebarSubMenu = ({
   label
 }: SidebarSubMenuProps) => {
   const isActive = (active: number) => active === activeBusiness
+  const pathname = usePathname();
   const router = useRouter();
 
+  const newPathname = pathname.substring(0, pathname.length - 1);
+
   function sideRoute() {
-    router.push("/")
+    router.push(`${newPathname}/${active}`)
   }
 
   return (
