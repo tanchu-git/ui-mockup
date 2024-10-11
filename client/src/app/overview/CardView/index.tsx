@@ -4,6 +4,7 @@
 
 import {
   Priority,
+  RankData,
   Task,
   useGetRankDataQuery,
   useGetTasksQuery,
@@ -44,6 +45,9 @@ const Overview = ({ id }: Props) => {
   if (rankDataLoading) return <div>Loading..</div>;
   if (rankDataError || !rankData ) return <div>Error fetching ranking data</div>;
 
+  const Ranking = () => {
+  };
+
   const chartColors = darkMode
     ? {
         bar: "#8884d8",
@@ -61,10 +65,11 @@ const Overview = ({ id }: Props) => {
   return (
     <div className="container h-full w-[100%] bg-gray-100 bg-transparent p-8">
       <Header name="Overview" />
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Task Priority Distribution
+            Review Score
+            {rankData.map(data => data.reviewScore)}
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <h3 className="mb-4 text-lg font-semibold dark:text-white">

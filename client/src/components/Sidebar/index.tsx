@@ -7,7 +7,7 @@ import { LockIcon, LucideIcon, X, ChartNoAxesCombined, TrendingUp, MessageSquare
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { act, useState } from 'react'
 import ModalAddBusiness from '../ModalAddBusiness';
 
 // Set active user ID - make it dynamic later
@@ -156,13 +156,17 @@ const SidebarSubMenu = ({
   label
 }: SidebarSubMenuProps) => {
   const isActive = (active: number) => active === activeBusiness
-  const pathname = usePathname();
   const router = useRouter();
+  let pathname = usePathname();
 
-  const newPathname = pathname.substring(0, pathname.length - 1);
+  if (pathname === "/search" || pathname === "/settings") {
+    pathname = `/overview/${active}`;
+  } else {
+    pathname = pathname.substring(0, pathname.length - 1) + active;
+  }
 
   function sideRoute() {
-    router.push(`${newPathname}/${active}`)
+    router.push(pathname)
   }
 
   return (
