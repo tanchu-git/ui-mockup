@@ -150,7 +150,7 @@ export const api = createApi({
             query: ({businessId}) => `rankData?businessId=${businessId}`,
             providesTags: (result) => 
                 result 
-                    ? result.map(({id}) => ({type: "RankData" as const, id})) 
+                    ? result.map(({businessId}) => ({type: "RankData" as const, businessId})) 
                     : [{type: "RankData" as const}]
         }),
     })

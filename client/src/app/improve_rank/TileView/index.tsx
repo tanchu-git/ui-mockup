@@ -85,7 +85,7 @@ const TaskColumn = ({
               }}
               className={`sl:py-4 rounded-lg py-2 xl:px-2 ${isOver ? "bg-blue-100 dark:bg-neutral-950" : ""}`}
             >
-              <div className="mb-3 flex w-full">
+              <div className="mb-3 flex w-full shadow-xl">
                 {/* Status header styling */}
                 <div
                   className={`w-2 !bg-[${statusColor[status]}] rounded-s-lg`}
@@ -96,7 +96,7 @@ const TaskColumn = ({
                         {status}{" "}
                         <span
                         className="ml-2 inline-block rounded-full bg-gray-200 p-1 text-center text-sm leading-none
-                        dark:bg-dark-tertiary" style={{ width: "1.5rem", height: "1.5rem" }}
+                        dark:bg-dark-tertiary" style={{ width: "1.5rem", height: "1.25rem" }}
                         >
                         {tasksCount}
                         </span>
@@ -173,7 +173,7 @@ const Task = ({ task }: TaskProps) => {
             drag(instance);
         }}
         // Tile shadow
-        className={`mb-4 rounded-md bg-white shadow-lg dark:bg-dark-secondary 
+        className={`mb-4 rounded-md bg-white shadow-xl dark:bg-dark-secondary 
             ${isDragging ? "opacity-50" : "opacity-100"}
             `}
         >
