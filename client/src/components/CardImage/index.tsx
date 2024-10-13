@@ -15,8 +15,8 @@ const CardImage = ({
     image,
 }: CardImageProps) => {
   return (
-    <div className="rounded-lg dark:shadow-dark-tertiary shadow-md bg-white mb-5
-        p-0 relative w-full break-words overflow-hidden hover:ring dark:bg-slate-800">
+    <div className="rounded-lg dark:shadow-dark-tertiary shadow-md bg-white mb-5 p-0 relative
+        dark:hover:ring-orange-500 w-full break-words overflow-hidden hover:ring dark:bg-slate-800">
         <div className="relative">                    
             <Image src={image} alt="materialm"/>
             <Chip color="primary" label={title} 

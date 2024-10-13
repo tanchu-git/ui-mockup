@@ -134,8 +134,8 @@ const CardBarChart = ({
   }
 
   return (
-      <div className={`${lightThemes[themeColor as keyof typeof CardBarChart]} 
-        rounded-lg p-6 relative w-full break-words mb-5 hover:ring dark:shadow-dark-tertiary shadow-md`}>
+      <div className={`${lightThemes[themeColor as keyof typeof CardBarChart]} rounded-lg p-6 relative
+        w-full break-words mb-5 hover:ring dark:hover:ring-orange-500 dark:shadow-dark-tertiary shadow-md`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className={`w-14 h-10 rounded-full flex items-center justify-center 

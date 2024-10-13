@@ -48,8 +48,6 @@ const Overview = ({ id }: Props) => {
   const open = Boolean(anchorEl);
   const popOverId = open ? 'simple-popover' : undefined;
 
-  const darkMode = useAppSelector((state) => state.global.darkMode);
-
   if (rankDataLoading) return <div>Loading..</div>;
   if (rankDataError || !rankData ) return <div>Error fetching ranking data</div>;
 
@@ -79,8 +77,10 @@ const Overview = ({ id }: Props) => {
   const icons = {
     "Total reviews": "carbon:review",
     "Review score": "tabler:pentagon-number-9",
-    "@Hashtags": "solar:hashtag-square-outline",
+    "#Hashtags": "solar:hashtag-square-outline",
     "Top review platform": "carbon:star-review",
+    "Rank": "hugeicons:ranking",
+    "Staff mentioned": "mdi:person-alert-outline",
   }
 
   return (
@@ -91,12 +91,16 @@ const Overview = ({ id }: Props) => {
             icon={icons["Total reviews"]} />
           <CardAreaChart themeColor="blue" title={"Review score"} value={(rankData[0].reviewScore)}
             icon={icons["Review score"]} />
+          <CardText themeColor="green" title={"Staff mentioned"} value={(rankData[0].mostMentionedStaff)} 
+            fontSize="text-4xl" icon={icons["Staff mentioned"]} />
           <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage} />
-          <CardTreemapChart themeColor="yellow" title={"@Hashtags"} value={(rankData[0].socialEngagement)} 
-            icon={icons["@Hashtags"]} />
+          <CardTreemapChart themeColor="yellow" title={"#Hashtags"} value={(rankData[0].socialEngagement)} 
+            icon={icons["#Hashtags"]} />
           <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
             fontSize="text-4xl" icon={icons["Top review platform"]} />
           <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage} />
+          <CardAreaChart themeColor="violet" title={"Rank"} value={(rankData[0].rank)}
+            icon={icons["Rank"]} />          
         </div>
       </div>
     </div>

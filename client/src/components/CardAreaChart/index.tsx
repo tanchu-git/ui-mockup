@@ -9,7 +9,9 @@ const colors = {
   "yellow": ['#F9C80E', '#c7f464'],
   "green": ['#5A2A27', '#8D5B4C'],
   "dark": ['#2E294E', '#546E7A'],
-  "gray": ['#33b2df', '#4ecdc4']
+  "gray": ['#33b2df', '#4ecdc4'],
+  "violet": ['#00B1F2', '#69d2e7'],
+  "blue": ['#008FFB', '#81D4FA'],
 }
 
 interface CardAreaChartProps {
@@ -29,7 +31,7 @@ const CardAreaChart = ({
     series: [
       {
         name: title,
-        color: 	colors[themeColor as keyof typeof CardAreaChart],
+        color: 	colors[themeColor as keyof typeof CardAreaChart][1],
         data: [3.3, 3.7, 4.1, 3.9, 4.4, 4.2, 4.6],
       },
     ],
@@ -99,8 +101,8 @@ const CardAreaChart = ({
   }
   
   return (
-      <div className={`${lightThemes[themeColor as keyof typeof CardAreaChart]} 
-        rounded-lg p-6 relative w-full break-words mb-5 hover:ring dark:shadow-dark-tertiary shadow-md`}>
+      <div className={`${lightThemes[themeColor as keyof typeof CardAreaChart]} rounded-lg p-6 relative
+        w-full break-words mb-5 hover:ring dark:hover:ring-orange-500 dark:shadow-dark-tertiary shadow-md`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className={`w-14 h-10 rounded-full flex items-center justify-center 
