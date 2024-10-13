@@ -92,12 +92,23 @@ const CardTreemapChart = ({
       theme: "dark",
     },
   };
+
+  const lightThemes = {
+    "red": "bg-red-100",
+    "blue": "bg-blue-100",
+    "yellow": "bg-yellow-100",
+  }
+  const solidThemes = {
+    "red": "bg-red-500",
+    "blue": "bg-blue-500",
+    "yellow": "bg-yellow-500",
+  }
   
   return (
-      <div className={`bg-${themeColor}-100 rounded-lg p-6 relative w-full break-words mb-5 hover:ring`}>
+      <div className={`${lightThemes[themeColor as keyof typeof CardTreemapChart]} rounded-lg p-6 relative w-full break-words mb-5 hover:ring`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className={`w-14 h-10 rounded-full flex items-center justify-center bg-${themeColor}-500 text-white`}>
+            <span className={`w-14 h-10 rounded-full flex items-center justify-center ${solidThemes[themeColor as keyof typeof CardTreemapChart]} text-white`}>
               <Icon icon={icon} height={24} />
             </span>
             <h5 className="text-2xl opacity-70">{title}</h5>
