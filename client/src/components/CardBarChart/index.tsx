@@ -108,13 +108,13 @@ const CardBarChart = ({
     },
   };
 
-  const theme = `bg-${themeColor}-100 rounded-lg p-6 relative w-full break-words mb-5 hover:ring`;
+  const theme = "bg-red-500";
 
   return (
-      <div className={theme}>
+      <div className={`bg-${themeColor}-100 rounded-lg p-6 relative w-full break-words mb-5 hover:ring`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className={`w-14 h-10 rounded-full flex items-center justify-center bg-${themeColor}-500 text-white`}>
+            <span className={`w-14 h-10 rounded-full flex items-center justify-center ${theme} text-white`}>
               <Icon icon={icon} height={24} />
             </span>
             <h5 className="text-2xl opacity-70">{title}</h5>
