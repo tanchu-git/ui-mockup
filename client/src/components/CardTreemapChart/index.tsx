@@ -97,18 +97,34 @@ const CardTreemapChart = ({
     "red": "bg-red-100",
     "blue": "bg-blue-100",
     "yellow": "bg-yellow-100",
+    "gray": "bg-gray-100",
+    "pink": "bg-pink-100",
+    "green": "bg-green-100",
+    "teal": "bg-teal-100",
+    "rose": "bg-rose-100",
+    "cyan": "bg-cyan-100",
+    "violet": "bg-violet-100",
   }
   const solidThemes = {
     "red": "bg-red-500",
     "blue": "bg-blue-500",
     "yellow": "bg-yellow-500",
+    "gray": "bg-gray-500",
+    "pink": "bg-pink-500",
+    "green": "bg-green-500",
+    "teal": "bg-teal-500",
+    "rose": "bg-rose-500",
+    "cyan": "bg-cyan-500",
+    "violet": "bg-violet-500",
   }
   
   return (
-      <div className={`${lightThemes[themeColor as keyof typeof CardTreemapChart]} rounded-lg p-6 relative w-full break-words mb-5 hover:ring`}>
+      <div className={`${lightThemes[themeColor as keyof typeof CardTreemapChart]}
+        rounded-lg p-6 relative w-full break-words mb-5 hover:ring dark:shadow-dark-tertiary shadow-md`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className={`w-14 h-10 rounded-full flex items-center justify-center ${solidThemes[themeColor as keyof typeof CardTreemapChart]} text-white`}>
+            <span className={`w-14 h-10 rounded-full flex items-center justify-center 
+              ${solidThemes[themeColor as keyof typeof CardTreemapChart]} text-white`}>
               <Icon icon={icon} height={24} />
             </span>
             <h5 className="text-2xl opacity-70">{title}</h5>

@@ -39,6 +39,8 @@ const Sidebar = () => {
     transition-all duration-300 h-full z-40 dark:bg-slate-800 overflow-y-auto bg-white 
     ${sidebarCollapsed ? "w-0 hidden" : "w-64"}
   `;
+
+  // A bug that makes the app work - DO NOT REMOVE
   const pathname = usePathname();
   
   return (

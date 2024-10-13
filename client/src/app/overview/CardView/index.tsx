@@ -21,6 +21,7 @@ import CardImage from "@/components/CardImage";
 import CardTreemapChart from "@/components/CardTreemapChart";
 import rankImage from "/public/s2.jpg";
 import Masonry from '@mui/lab/Masonry';
+import CardText from "@/components/CardText";
 
 type Props = {
     id: string;
@@ -77,7 +78,9 @@ const Overview = ({ id }: Props) => {
 
   const icons = {
     "Total reviews": "carbon:review",
-    "Review score": "tabler:pentagon-number-9"
+    "Review score": "tabler:pentagon-number-9",
+    "@Hashtags": "solar:hashtag-square-outline",
+    "Top review platform": "carbon:star-review",
   }
 
   return (
@@ -85,17 +88,15 @@ const Overview = ({ id }: Props) => {
       <div className="gap-6 sm:columns-4">     
         <div>
           <CardBarChart themeColor="red" title={"Total reviews"} value={rankData[0].totalReviews}
-            icon={icons["Total reviews"]}
-          />
-          <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage}/>
-
+            icon={icons["Total reviews"]} />
           <CardAreaChart themeColor="blue" title={"Review score"} value={(rankData[0].reviewScore)}
-            icon={icons["Review score"]}
-          />
+            icon={icons["Review score"]} />
+          <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage} />
           <CardTreemapChart themeColor="yellow" title={"@Hashtags"} value={(rankData[0].socialEngagement)} 
-            icon={icons["Review score"]} 
-          />
-          <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage}/>
+            icon={icons["@Hashtags"]} />
+          <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
+            fontSize="text-4xl" icon={icons["Top review platform"]} />
+          <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage} />
         </div>
       </div>
     </div>
