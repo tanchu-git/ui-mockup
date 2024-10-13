@@ -15,7 +15,12 @@ import { CircleHelp, Icon, Wallpaper } from "lucide-react";
 import IconButton from "@mui/material/IconButton";
 import CardActionArea from "@mui/material/CardActionArea";
 import Popover from '@mui/material/Popover';
-import { text } from "stream/consumers";
+import CardBarChart from "@/components/CardBarChart";
+import CardAreaChart from "@/components/CardAreaChart";
+import CardImage from "@/components/CardImage";
+import CardTreemapChart from "@/components/CardTreemapChart";
+import rankImage from "/public/s2.jpg";
+import Masonry from '@mui/lab/Masonry';
 
 type Props = {
     id: string;
@@ -28,6 +33,7 @@ const Overview = ({ id }: Props) => {
     isError: rankDataError
   } = useGetRankDataQuery({ businessId: Number(id) });
   
+  // Popover state and event handling
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,8 +52,10 @@ const Overview = ({ id }: Props) => {
   if (rankDataLoading) return <div>Loading..</div>;
   if (rankDataError || !rankData ) return <div>Error fetching ranking data</div>;
 
-  const [r] = rankData.map((data) => {
-    return data;
+  // Filter away unnecessary data
+  const [filteredData] = rankData.map((data) => {
+    return Object.entries(data).filter((data) => 
+      data[0] !== "businessId" && data[0] !== "Business");
   })
 
   const dataNames = {
@@ -67,48 +75,31 @@ const Overview = ({ id }: Props) => {
     "lastMention": "Last @mention",
   }
 
+  const icons = {
+    "Total reviews": "carbon:review",
+    "Review score": "tabler:pentagon-number-9"
+  }
+
   return (
     <div className="container h-full w-[100%] p-8">
-      <div className="gap-6 grid grid-cols-2 sm:grid-cols-4 relative">
-        {          
-          Object.entries(r).filter((data) => data[0] !== "businessId" && data[0] !== "Business")
-            .map((data) => (
-              <Card sx={{ minWidth: 200, boxShadow: 5}} className="dark:bg-black dark:text-gray-200" >
-                <CardActionArea>
-                  <CardContent>
-                    <Typography className="dark:text-white" gutterBottom sx={{ color: 'text.secondary', fontSize: 18 }}>
-                      { dataNames[data[0] as keyof typeof dataNames] }
-                    </Typography>
-                    <Typography className="text-blue-500" variant="body2" sx={{ fontSize: 22, fontWeight: "bold" }}>
-                      {data[1]}         
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+      <div className="gap-6 sm:columns-4">     
+        <div>
+          <CardBarChart themeColor="red" title={"Total reviews"} value={rankData[0].totalReviews}
+            icon={icons["Total reviews"]}
+          />
+          <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage}/>
 
-                <IconButton color="primary" aria-describedby={popOverId} onClick={handleClick} 
-                  className={`cursor-pointer items-center transition-colors hover:bg-blue-100 dark:bg-black`}>
-                  <CircleHelp />
-                </IconButton>
-
-                <Popover 
-                  id={popOverId}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}>
-                  <Typography sx={{ p: 1 }}>The content of the Popover.</Typography>
-                </Popover>
-              </Card> 
-            )
-          )
-        }
+          <CardAreaChart themeColor="blue" title={"Review score"} value={(rankData[0].reviewScore)}
+            icon={icons["Review score"]}
+          />
+          <CardTreemapChart themeColor="yellow" title={"@Hashtags"} value={(rankData[0].socialEngagement)} 
+            icon={icons["Review score"]} 
+          />
+          <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage}/>
+        </div>
       </div>
     </div>
-  );
-  
+  )
 };
 
 export default Overview;

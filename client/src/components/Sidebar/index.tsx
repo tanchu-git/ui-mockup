@@ -35,18 +35,18 @@ const Sidebar = () => {
   const [isModalAddBusinessOpen, setIsModalAddBusinessOpen] = useState(false);
 
   // For sidebar layout - check if it's collapsed and act accordingly
-  const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl 
-    transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white 
+  const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-2xl 
+    transition-all duration-300 h-full z-40 dark:bg-slate-800 overflow-y-auto bg-white 
     ${sidebarCollapsed ? "w-0 hidden" : "w-64"}
-  `
-
+  `;
   const pathname = usePathname();
+  
   return (
     <div className={sidebarClassNames}>
       {/* Logo section */}
       <div className='flex h-[100%] w-full flex-col justify-start'>
         {/* Top logo */}
-        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black'>
+        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-slate-800'>
           {/* Top left name */}
           <div className='text-xl font-bold text-gray-800 dark:text-white'>
             BIPCARDS
@@ -132,8 +132,8 @@ const SidebarLink = ({
       <div 
         // Sidebar links positional layout
         className={`relative flex cursor-pointer items-center gap-3 transition-colors 
-          hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
-            isActive ? "bg-gray-100 text-white dark:bg-slate-600" : ""
+          hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-gray-700 shadow-sm ${
+            isActive ? "bg-gray-100 text-white dark:bg-gray-900" : ""
           } justify-start px-8 py-3`}
       >
         {/* Active link styling */}
@@ -159,7 +159,7 @@ const SidebarSubMenu = ({
   const router = useRouter();
   let pathname = usePathname();
 
-  if (pathname === "/search" || pathname === "/settings") {
+  if (pathname === "/search" || pathname === "/settings" || pathname === "/") {
     pathname = `/overview/${active}`;
   } else {
     pathname = pathname.substring(0, pathname.length - 1) + active;
@@ -174,7 +174,7 @@ const SidebarSubMenu = ({
       <div 
         // Container styling
         className={`relative flex cursor-pointer items-center gap-2 transition-colors rounded-md 
-          py-3 mx-8 my-2 hover:bg-blue-100 dark:bg-black ${
+          py-3 mx-8 my-2 hover:bg-blue-100 ${
             isActive(active) ? "bg-blue-200 text-black dark:bg-blue-200" : "dark:hover:bg-blue-400"
           } justify-start px-3 py-3`}
       >
