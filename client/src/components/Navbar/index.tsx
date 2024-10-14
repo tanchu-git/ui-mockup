@@ -10,7 +10,7 @@ const Navbar = () => {
   const darkMode = useAppSelector((state) => state.global.darkMode)
 
   return (
-    <div className='flex items-center justify-between bg-indigo-500 px-4 py-3 dark:bg-black'>
+    <div className='flex items-center justify-between bg-indigo-500 px-4 py-3 dark:bg-slate-800'>
         {/* Searchbar */}
         <div className='flex items-center gap-8'>
           {/* Sidebar menu icon - create menu button if sidebar is collapsed */}

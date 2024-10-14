@@ -36,7 +36,7 @@ const Sidebar = () => {
 
   // For sidebar layout - check if it's collapsed and act accordingly
   const sidebarClassNames = `fixed flex flex-col h-[100%] justify-between shadow-2xl 
-    transition-all duration-300 h-full z-40 dark:bg-slate-800 overflow-y-auto bg-white 
+    transition-all duration-300 h-full z-40 dark:bg-slate-800 overflow-y-auto bg-slate-100 
     ${sidebarCollapsed ? "w-0 hidden" : "w-64"}
   `;
 
@@ -48,7 +48,7 @@ const Sidebar = () => {
       {/* Logo section */}
       <div className='flex h-[100%] w-full flex-col justify-start'>
         {/* Top logo */}
-        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-slate-800'>
+        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-indigo-500 px-6 pt-3 dark:bg-slate-800'>
           {/* Top left name */}
           <div className='text-xl font-bold text-gray-800 dark:text-white'>
             BIPCARDS
@@ -134,7 +134,7 @@ const SidebarLink = ({
       <div 
         // Sidebar links positional layout
         className={`relative flex cursor-pointer items-center gap-3 transition-colors 
-          hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-gray-700 shadow-sm ${
+          hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-gray-700 ${
             isActive ? "bg-gray-100 text-white dark:bg-gray-900" : ""
           } justify-start px-8 py-3`}
       >

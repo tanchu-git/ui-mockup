@@ -104,12 +104,12 @@ const Overview = ({ id }: Props) => {
       </div>
       {/* Column 3 */}
       <div className="gap-6 columns-1 max-w-96">
+        <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
+          fontSize="text-4xl" icon={icons["Top review platform"]} />
         <CardAreaChart themeColor="dark" title={"Review score"} value={(rankData[0].reviewScore)}
           icon={icons["Review score"]} />
         <CardBarChart themeColor="red" title={"Total reviews"} value={rankData[0].totalReviews}
-          icon={icons["Total reviews"]} />
-        <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
-          fontSize="text-4xl" icon={icons["Top review platform"]} />
+          icon={icons["Total reviews"]} />        
       </div>
       {/* Column 4 */}
       <div className="gap-6 columns-1 max-w-96">
