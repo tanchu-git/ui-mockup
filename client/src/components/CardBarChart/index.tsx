@@ -119,6 +119,7 @@ const CardBarChart = ({
     "rose": "bg-rose-100",
     "cyan": "bg-cyan-100",
     "violet": "bg-violet-100",
+    "dark": "bg-zinc-200",
   }
   const solidThemes = {
     "red": "bg-red-500",
@@ -131,6 +132,7 @@ const CardBarChart = ({
     "rose": "bg-rose-500",
     "cyan": "bg-cyan-500",
     "violet": "bg-violet-500",
+    "dark": "bg-zinc-500",
   }
 
   return (

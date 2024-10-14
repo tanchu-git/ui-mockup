@@ -81,27 +81,41 @@ const Overview = ({ id }: Props) => {
     "Top review platform": "carbon:star-review",
     "Rank": "hugeicons:ranking",
     "Staff mentioned": "mdi:person-alert-outline",
+    "Top social platform": "simple-line-icons:social-instagram",
+    "Most reviewed by": "simple-line-icons:social-instagram",
   }
 
   return (
-    <div className="container h-full w-[100%] p-8">
-      <div className="gap-6 sm:columns-4">     
-        <div>
-          <CardBarChart themeColor="red" title={"Total reviews"} value={rankData[0].totalReviews}
-            icon={icons["Total reviews"]} />
-          <CardAreaChart themeColor="blue" title={"Review score"} value={(rankData[0].reviewScore)}
-            icon={icons["Review score"]} />
-          <CardText themeColor="green" title={"Staff mentioned"} value={(rankData[0].mostMentionedStaff)} 
-            fontSize="text-4xl" icon={icons["Staff mentioned"]} />
-          <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage} />
-          <CardTreemapChart themeColor="yellow" title={"#Hashtags"} value={(rankData[0].socialEngagement)} 
-            icon={icons["#Hashtags"]} />
-          <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
-            fontSize="text-4xl" icon={icons["Top review platform"]} />
-          <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage} />
-          <CardAreaChart themeColor="violet" title={"Rank"} value={(rankData[0].rank)}
-            icon={icons["Rank"]} />          
-        </div>
+    <div className="flex flex-wrap gap-6 container h-full w-[100%] p-8">
+      {/* Column 1 */}
+      <div className="gap-6 columns-1 max-w-96">
+        <CardAreaChart themeColor="violet" title={"Rank"} value={(rankData[0].rank)}
+          icon={icons["Rank"]} />
+        <CardText themeColor="green" title={"Staff mentioned"} value={(rankData[0].mostMentionedStaff)} 
+          fontSize="text-4xl" icon={icons["Staff mentioned"]} />
+        <CardTreemapChart themeColor="yellow" title={"#Hashtags"} value={(rankData[0].socialEngagement)} 
+          icon={icons["#Hashtags"]} />        
+      </div>
+      {/* Column 2 */}
+      <div className="gap-6 columns-1 max-w-96">
+        <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage} />
+        <CardText themeColor="blue" title={"Top social platform"} value={(rankData[0].topSocialTool)} 
+          fontSize="text-4xl" icon={icons["Top social platform"]} />
+      </div>
+      {/* Column 3 */}
+      <div className="gap-6 columns-1 max-w-96">
+        <CardAreaChart themeColor="dark" title={"Review score"} value={(rankData[0].reviewScore)}
+          icon={icons["Review score"]} />
+        <CardBarChart themeColor="red" title={"Total reviews"} value={rankData[0].totalReviews}
+          icon={icons["Total reviews"]} />
+        <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
+          fontSize="text-4xl" icon={icons["Top review platform"]} />
+      </div>
+      {/* Column 4 */}
+      <div className="gap-6 columns-1 max-w-96">
+        <CardText themeColor="cyan" title={"Most reviewed by"} value={(rankData[0].mostReviewedByGender)} 
+          fontSize="text-4xl" icon={icons["Most reviewed by"]} />
+        <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage} />
       </div>
     </div>
   )
