@@ -48,10 +48,10 @@ const Sidebar = () => {
       {/* Logo section */}
       <div className='flex h-[100%] w-full flex-col justify-start'>
         {/* Top logo */}
-        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-indigo-500 px-6 pt-3 dark:bg-slate-800'>
+        <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-indigo-500 px-6 pt-1 dark:bg-slate-800'>
           {/* Top left name */}
           <div className='text-xl font-bold text-gray-800 dark:text-white'>
-            BIPCARDS
+            INSIGHT
           </div>
           {sidebarCollapsed ? null : (
             <button className='py-3' onClick={() => {dispatch(setSidebarCollapsed(!sidebarCollapsed))}}>

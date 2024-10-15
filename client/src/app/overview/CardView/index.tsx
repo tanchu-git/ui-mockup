@@ -88,7 +88,7 @@ const Overview = ({ id }: Props) => {
   return (
     <div className="flex flex-wrap gap-6 container h-full w-[100%] p-8">
       {/* Column 1 */}
-      <div className="gap-6 columns-1 max-w-96">
+      <div className="columns-1 max-w-96">
         <CardAreaChart themeColor="violet" title={"Rank"} value={(rankData[0].rank)}
           icon={icons["Rank"]} />
         <CardText themeColor="green" title={"Staff mentioned"} value={(rankData[0].mostMentionedStaff)} 
@@ -97,13 +97,13 @@ const Overview = ({ id }: Props) => {
           icon={icons["#Hashtags"]} />        
       </div>
       {/* Column 2 */}
-      <div className="gap-6 columns-1 max-w-96">
+      <div className="columns-1 max-w-96">
         <CardImage title={"Top compliment"} value={(rankData[0].mostMentionedCompliment)} image={rankImage} />
         <CardText themeColor="blue" title={"Top social platform"} value={(rankData[0].topSocialTool)} 
           fontSize="text-4xl" icon={icons["Top social platform"]} />
       </div>
       {/* Column 3 */}
-      <div className="gap-6 columns-1 max-w-96">
+      <div className="columns-1 max-w-96">
         <CardText themeColor="teal" title={"Top review platform"} value={(rankData[0].topReviewTool)} 
           fontSize="text-4xl" icon={icons["Top review platform"]} />
         <CardAreaChart themeColor="dark" title={"Review score"} value={(rankData[0].reviewScore)}
@@ -112,7 +112,7 @@ const Overview = ({ id }: Props) => {
           icon={icons["Total reviews"]} />        
       </div>
       {/* Column 4 */}
-      <div className="gap-6 columns-1 max-w-96">
+      <div className="columns-1 max-w-96">
         <CardText themeColor="cyan" title={"Most reviewed by"} value={(rankData[0].mostReviewedByGender)} 
           fontSize="text-4xl" icon={icons["Most reviewed by"]} />
         <CardImage title={"Top complaint"} value={(rankData[0].mostMentionedComplaint)} image={rankImage} />
