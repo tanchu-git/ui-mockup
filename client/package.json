@@ -33,6 +33,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@iconify/react": "^5.0.2",
     "@types/node": "^20.16.9",
     "@types/numeral": "^2.0.5",

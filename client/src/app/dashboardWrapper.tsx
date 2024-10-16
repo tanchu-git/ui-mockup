@@ -23,7 +23,7 @@ const DashboardLayout = ({children} : {children: React.ReactNode}) => {
         <Sidebar />
         <main 
             // Top navigation bar - no padding if sidebar is collapsed
-            className={`dark:bg-dark-bg flex w-full flex-col bg-gray-50 
+            className={`dark:bg-slate-900 flex w-full flex-col bg-[#d7e2ff]
                 ${sidebarCollapsed ? "" : "md:pl-64"}
               `}
         >
