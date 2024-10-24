@@ -22,15 +22,16 @@ model User {
 }
 
 model Business {
-  id         Int    @id @default(autoincrement())
-  ownerId    Int
-  name       String
-  street     String
-  postcode   Int
-  city       String
-  coordinate String
-  User       User?  @relation(fields: [ownerId], references: [userId])
+  id           Int    @id @default(autoincrement())
+  ownerId      Int
+  name         String
+  street       String
+  postcode     Int
+  city         String
+  placeId      String
+  feedbackLink String
 
+  User    User?      @relation(fields: [ownerId], references: [userId])
   data    RankData[]
   reviews Reviews[]
   task    Task[]

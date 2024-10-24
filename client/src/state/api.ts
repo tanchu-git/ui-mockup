@@ -16,7 +16,8 @@ export interface Business {
     street: string;
     postcode: number;
     city: string;
-    coordinate?: string;
+    placeId?: string;
+    feedbackLink?: string;
 
     user?: User
 }

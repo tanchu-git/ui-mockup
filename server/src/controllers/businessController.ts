@@ -31,7 +31,7 @@ export const createBusiness = async (
     req: Request,
     res: Response
 ): Promise<void> => {
-    const {ownerId, name, street, postcode, city, coordinate} = req.body;
+    const {ownerId, name, street, postcode, city, placeId, feedbackLink} = req.body;
     try {
         // Create new data in the business schema
         const newBusiness = await prisma.business.create({
@@ -41,7 +41,8 @@ export const createBusiness = async (
                 street, 
                 postcode, 
                 city, 
-                coordinate
+                placeId,
+                feedbackLink,
             }
         });
         res.status(201).json(newBusiness);

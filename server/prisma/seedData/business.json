@@ -6,7 +6,8 @@
     "street": "Kungsgatan 1",
     "postcode": 41404,
     "city": "Gothenburg",
-    "coordinate": "57.700203, 11.984958"
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "street": "Kungsgatan 2",
     "postcode": 42414,
     "city": "Gothenburg",
-    "coordinate": "57.700554, 11.977334"
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student"
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@
     "street": "Kungsgatan 3",
     "postcode": 43424,
     "city": "Gothenburg",
-    "coordinate": "57.700203, 11.914958"
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student"
   },
   {
     "id": 4,
@@ -33,6 +36,7 @@
     "street": "Kungsgatan 4",
     "postcode": 44434,
     "city": "Gothenburg",
-    "coordinate": "57.700203, 11.944958"
+    "placeId": "ChIJVY04bVvzT0YR0eKKTBsxJj0",
+    "feedbackLink": "123student"
   }
 ]

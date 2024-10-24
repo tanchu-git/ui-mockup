@@ -15,7 +15,8 @@ CREATE TABLE "Business" (
     "street" TEXT NOT NULL,
     "postcode" INTEGER NOT NULL,
     "city" TEXT NOT NULL,
-    "coordinate" TEXT NOT NULL,
+    "placeId" TEXT NOT NULL,
+    "feedbackLink" TEXT NOT NULL,
 
     CONSTRAINT "Business_pkey" PRIMARY KEY ("id")
 );

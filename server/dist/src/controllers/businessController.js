@@ -34,7 +34,7 @@ const getBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getBusiness = getBusiness;
 const createBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { ownerId, name, street, postcode, city, coordinate } = req.body;
+    const { ownerId, name, street, postcode, city, placeId, feedbackLink } = req.body;
     try {
         // Create new data in the business schema
         const newBusiness = yield prisma.business.create({
@@ -44,7 +44,8 @@ const createBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 street,
                 postcode,
                 city,
-                coordinate
+                placeId,
+                feedbackLink,
             }
         });
         res.status(201).json(newBusiness);
