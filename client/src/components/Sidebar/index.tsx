@@ -63,7 +63,7 @@ const Sidebar = () => {
         </div>
         {/* Company */}
         <div className='flex items-center gap-5 border-y-[1.5px] border-gray-200 px-8 py-4 dark:border-gray-700'>          
-          <Icon icon="game-icons:rank-3" height={40} className='dark:text-gray-200'></Icon>
+          <Icon icon="bi:clipboard-data" height={40} className='dark:text-gray-200'></Icon>
           <div>
             <h3 className='text-md font-bold tracking-wide dark:text-gray-200'>
               RANKING DATA              
