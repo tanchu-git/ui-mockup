@@ -86,46 +86,7 @@ export const api = createApi({
     reducerPath: "api",
     tagTypes: ["Business", "Tasks", "Reviews", "RankData"],
     // Redux query
-    endpoints: (build) => ({
-        // return the schema
-        getBusiness: build.query<Business[], {ownerId: number}>({
-            // append to URL
-            query: ({ownerId}) => `business?ownerId=${ownerId}`,
-            providesTags: (result) => 
-                result 
-                    ? result.map(({id}) => ({type: "Business" as const, id})) 
-                    : [{type: "Business" as const}]
-        }),
-        // When creating a new business on UI - data will be transferred here
-        createBusiness: build.mutation<Business, Partial<Business>>({
-            // POST body
-            query: (business) => ({
-                url: "business",
-                method: "POST",
-                body: business
-            }),
-            // Get updated list
-            invalidatesTags: ["Business"]
-        }),
-        // Send parameter 'businessId' and get the corresponding data
-        getTasks: build.query<Task[], {businessId: number}>({
-            // append to URL
-            query: ({businessId}) => `tasks?businessId=${businessId}`,
-            providesTags: (result) => 
-                result 
-                    ? result.map(({id}) => ({type: "Tasks" as const, id})) 
-                    : [{type: "Tasks" as const}]
-        }),
-        createTask: build.mutation<Task, Partial<Task>>({
-            // POST body
-            query: (task) => ({
-                url: "tasks",
-                method: "POST",
-                body: task
-            }),
-            // Get updated list
-            invalidatesTags: ["Tasks"]
-        }),
+    endpoints: (build) => ({        
         updateTaskStatus: build.mutation<Task, {taskId: number; status: string}>({
             // PATCH body
             query: ({taskId, status}) => ({
@@ -137,22 +98,6 @@ export const api = createApi({
             invalidatesTags: (result, error, {taskId}) => [
                 {type: "Tasks", id: taskId}
             ]
-        }),
-        getReviews: build.query<Review[], {businessId: number}>({
-            // append to URL
-            query: ({businessId}) => `reviews?businessId=${businessId}`,
-            providesTags: (result) => 
-                result 
-                    ? result.map(({id}) => ({type: "Reviews" as const, id})) 
-                    : [{type: "Reviews" as const}]
-        }),
-        getRankData: build.query<RankData[], {businessId: number}>({
-            // append to URL
-            query: ({businessId}) => `rankData?businessId=${businessId}`,
-            providesTags: (result) => 
-                result 
-                    ? result.map(({businessId}) => ({type: "RankData" as const, businessId})) 
-                    : [{type: "RankData" as const}]
         }),
         getFeedbackLink: build.query<Business[], {feedbackLink: string}>({
             // append to URL
@@ -166,12 +111,6 @@ export const api = createApi({
 })
 
 export const {
-    useGetBusinessQuery,
-    useCreateBusinessMutation,
-    useGetTasksQuery,
-    useCreateTaskMutation,
     useUpdateTaskStatusMutation,
-    useGetReviewsQuery,
-    useGetRankDataQuery,
     useGetFeedbackLinkQuery
 } = api;

@@ -10,6 +10,7 @@ import businessRoute from "./routes/businessRoute";
 import rankDataRoute from "./routes/rankDataRoute";
 import reviewsRoute from "./routes/reviewsRoute";
 import taskRoute from "./routes/taskRoute";
+import feedbackLink from "./routes/feedbackLinkRoute";
 
 // Configurations
 dotenv.config();
@@ -32,6 +33,7 @@ app.use("/business", businessRoute)
 app.use("/rankData", rankDataRoute)
 app.use("/reviews", reviewsRoute)
 app.use("/tasks", taskRoute)
+app.use("/feedback", feedbackLink)
 
 // Server
 const port = Number(process.env.PORT) || 3000;

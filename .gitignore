@@ -5,3 +5,7 @@ server/dist
 client/.env
 server/.env
 client/.next/
+feedback/.next/
+feedback/node_modules
+feedback/dist
+feedback/.env

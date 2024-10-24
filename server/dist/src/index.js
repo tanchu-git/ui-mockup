@@ -14,6 +14,7 @@ const businessRoute_1 = __importDefault(require("./routes/businessRoute"));
 const rankDataRoute_1 = __importDefault(require("./routes/rankDataRoute"));
 const reviewsRoute_1 = __importDefault(require("./routes/reviewsRoute"));
 const taskRoute_1 = __importDefault(require("./routes/taskRoute"));
+const feedbackLinkRoute_1 = __importDefault(require("./routes/feedbackLinkRoute"));
 // Configurations
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -33,6 +34,7 @@ app.use("/business", businessRoute_1.default);
 app.use("/rankData", rankDataRoute_1.default);
 app.use("/reviews", reviewsRoute_1.default);
 app.use("/tasks", taskRoute_1.default);
+app.use("/feedback", feedbackLinkRoute_1.default);
 // Server
 const port = Number(process.env.PORT) || 3000;
 app.listen(port, "0.0.0.0", () => {
