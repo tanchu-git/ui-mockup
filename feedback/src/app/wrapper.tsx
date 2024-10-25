@@ -6,8 +6,7 @@ import StoreProvider, { useAppSelector } from './redux';
 const Layout = ({children} : {children: React.ReactNode}) => {
 
   return (
-    // Sidebar navigation
-    <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>
+    <div>
         <main>            
             {children}
         </main>

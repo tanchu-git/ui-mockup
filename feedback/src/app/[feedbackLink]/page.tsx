@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetFeedbackLinkQuery } from "@/state/api";
+import { FeedbackView } from "../framerVariant";
 
 export default function Page({ params }: { params: { feedbackLink: string } }) {
     const {
@@ -11,10 +12,11 @@ export default function Page({ params }: { params: { feedbackLink: string } }) {
 
     if (businessLoading) return <div>Loading..</div>;
     if (businessError || !business || !business[0]) return <div>{params.feedbackLink} - No such link</div>;
-      
+    
     return (
-        <div>
-            {business[0].placeId}
+        <div className="">
+            {business[0].placeId}   
+            <FeedbackView />  
         </div>
     )
 }
