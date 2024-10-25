@@ -1,29 +1,67 @@
-import { useRef, useState } from "react";
-import { motion, useCycle } from "framer-motion";
+import { useRef } from "react";
+import { delay, motion, useCycle } from "framer-motion";
 import { Rating } from "@mui/material";
 import React from "react";
 import { useGetFeedbackLinkQuery } from "@/state/api";
-import { permanentRedirect, redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import FeedbackForm from "./feedbackForm";
 
-const negFeedback = {
+const negFeedbackVariant = {
     open: (height = 1000) => ({
         clipPath: `circle(${height * 2}px)`,
         transition: {
         type: "spring",
-        stiffness: 20,
+        stiffness: 10,
         restDelta: 2
         }
     }),
     closed: {
         clipPath: "circle(30px)",
         transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 400,
-        damping: 40
+            type: "spring",
+            stiffness: 200,
+            damping: 40
         }
     }
 };
+
+const buttonVariant = {
+    open: {
+        y: 300,
+        transition: {
+            type: "spring",
+            stiffness: 100,
+            damping: 40
+        }
+    },
+    closed: {
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 40
+        }
+    }
+}
+
+const ratingVariant = {
+    open: {
+        y: -220,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 50
+        }
+    },
+    closed: {
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 200,
+            damping: 50
+        }
+    }
+}
 
 type Props = {
     feedbackLink: string
@@ -50,12 +88,13 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
 
     return (
         <motion.nav
-            className=""
             initial={false}
             animate={isOpen ? "open" : "closed"}
             ref={containerRef}
-        >
-            <motion.div className="background bg-white" variants={negFeedback} />
+        >            
+            <motion.div className="background bg-white" variants={negFeedbackVariant} /> 
+            <FeedbackForm />  
+            <motion.div variants={ratingVariant}>
             <Rating
                 className={`mb-48 scale-150 ${isOpen ? "-z-10" : ""}`}
                 size="large"
@@ -64,20 +103,21 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
                 onChange={(event, newValue) => {
                 setValue(newValue);
                 }}
-            />
-            <button                 
-                className="negButton w-[50px] h-[50px] outline-none border-none 
+            /></motion.div>
+            <motion.button
+                variants={buttonVariant}             
+                className="background w-[50px] h-[50px] outline-none border-none 
                     font-bold text-blue-900 text-xl cursor-pointer bg-transparent"
-                    onClick={ () => { 
-                        goodRating 
-                        ? 
-                        router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
-                        : 
-                        toggleOpen()
-                    }}
-            >         
-            Go!
-            </button>
+                onClick={ () => { 
+                    goodRating 
+                    ? 
+                    router.push(`https://search.google.com/local/writereview?placeid=${placId}`) 
+                    : 
+                    toggleOpen()
+                }}
+            >   
+            {isOpen ? "Back" : "Go!"}
+            </motion.button>
         </motion.nav>    
     )
 }
