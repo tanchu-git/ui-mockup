@@ -15,7 +15,7 @@ export default function Page({ params }: { params: { feedbackLink: string } }) {
     
     return (
         <div className="">
-            {business[0].placeId}   
+            {/* {business[0].placeId}    */}
             <FeedbackView />  
         </div>
     )
