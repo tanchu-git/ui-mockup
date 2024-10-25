@@ -18,6 +18,7 @@ export interface Business {
     city: string;
     placeId?: string;
     feedbackLink?: string;
+    ratingLimit?: number;
 
     user?: User
 }

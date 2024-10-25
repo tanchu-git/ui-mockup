@@ -22,14 +22,15 @@ model User {
 }
 
 model Business {
-  id           Int    @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   ownerId      Int
   name         String
   street       String
   postcode     Int
   city         String
-  placeId      String
-  feedbackLink String
+  placeId      String?
+  feedbackLink String?
+  ratingLimit  Int?
 
   User    User?      @relation(fields: [ownerId], references: [userId])
   data    RankData[]

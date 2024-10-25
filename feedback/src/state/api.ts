@@ -5,8 +5,6 @@ export interface User {
     userId?: number;
     cognitoId?: number;
     username?: string;
-
-    // owner?: Business
 }
 
 export interface Business {
@@ -18,6 +16,7 @@ export interface Business {
     city: string;
     placeId?: string;
     feedbackLink?: string;
+    ratingLimit?: number;
 
     user?: User
 }
