@@ -29,7 +29,7 @@ const ModalAddBusiness = ({ isOpen, onClose }: Props) => {
         postcode: parseInt(postcode.replace(" ", "")), 
         city: city,
         // Fix by importing from google maps
-        coordinate: "string",
+        placeId: "string",
     });
   };
 
