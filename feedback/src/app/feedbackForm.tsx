@@ -93,7 +93,7 @@ export const FeedbackForm = () => {
                         variant="outlined"
                     />
             </FormGroup>
-            <div className='mt-4 mx-16'>
+            <div className='mt-8 mx-[67px]'>
                 <Button 
                     variant="contained" 
                     endIcon={<SendIcon />}

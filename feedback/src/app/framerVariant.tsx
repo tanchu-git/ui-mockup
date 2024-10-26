@@ -96,10 +96,11 @@ export const FeedbackView = ( { feedbackLink }: Props ) => {
             <FeedbackForm />  
             <motion.div variants={ratingVariant}>
             <Rating
-                className={`mb-48 scale-150 ${isOpen ? "-z-10" : ""}`}
+                className={`mb-48 scale-150 ${isOpen ? "-z-20" : ""}`}
                 size="large"
                 name="simple-controlled"
                 value={value}
+                readOnly={isOpen ? true : false}
                 onChange={(event, newValue) => {
                 setValue(newValue);
                 }}
